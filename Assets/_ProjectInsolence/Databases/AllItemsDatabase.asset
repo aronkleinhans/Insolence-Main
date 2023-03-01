@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 150c3c8aa6d4c9c40b9cd56bedd9d63b, type: 3}
+  m_Name: AllItemsDatabase
+  m_EditorClassIdentifier: 
+  itemType: All Items
+  contents: []
+  keys:
+  - CAPE01
+  - testHelm
+  - APPL01
+  - FIST
+  - WOOD
+  - quest1
+  - POT001
+  - AXE001
+  - DAGGDW011
+  - HAM001
+  - SWD001
+  values:
+  - {fileID: 11400000, guid: ce2c6f489170bb2418f00fe660465c22, type: 2}
+  - {fileID: 11400000, guid: 6276b20c2a9f90a4db1917e278ac88ae, type: 2}
+  - {fileID: 11400000, guid: 3afbe9c9c5cbb604aaa4a21df1f20dc6, type: 2}
+  - {fileID: 11400000, guid: a909e180b5b4f104894cf0f4d9656b26, type: 2}
+  - {fileID: 11400000, guid: 2e74990371441f148ae2f8febd8f4c02, type: 2}
+  - {fileID: 11400000, guid: d9f7c6213cbe6dc4083e83b6e1078495, type: 2}
+  - {fileID: 11400000, guid: fe5a7e98286e6b648b17af30927496d1, type: 2}
+  - {fileID: 11400000, guid: 10f5793143ab98349b980c0560498040, type: 2}
+  - {fileID: 11400000, guid: f2ba09e862e88d640a4317735fa12655, type: 2}
+  - {fileID: 11400000, guid: dee5883089f37dd45b82d231a43c8850, type: 2}
+  - {fileID: 11400000, guid: 4c6af63cde9d4f94ebad99ff81e92b14, type: 2}
