@@ -5,7 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/_ProjectInsolence/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/_ProjectInsolence/Scenes/MainMenu.unity
+    guid: 82d64eca0f5983d4abbfb1aa228d1fbf
+  - enabled: 1
+    path: Assets/_ProjectInsolence/Scenes/zzzLoadScreen.unity
+    guid: 9213e36a2c7ed2246b70fc1f995e1278
+  - enabled: 1
+    path: Assets/_ProjectInsolence/Scenes/MainWorld.unity
+    guid: 3b6a7ffde9deb924fa161c43c40fab73
   m_configObjects: {}

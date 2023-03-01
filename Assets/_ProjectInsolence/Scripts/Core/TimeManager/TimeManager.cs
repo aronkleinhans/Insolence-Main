@@ -1,6 +1,7 @@
 using UnityEngine;
 using Insolence.SaveUtility;
 using OccaSoftware.Altos.Runtime;
+using System;
 
 namespace Insolence.Core
 {
@@ -47,8 +48,7 @@ namespace Insolence.Core
         }
         private void Start()
         {
-            skyDefinition = GameObject.Find("Sky Director").GetComponent<AltosSkyDirector>().skyDefinition;
-
+            
             //set date to 100/1/1
             date[0] = 1;
             date[1] = 1;
@@ -80,9 +80,18 @@ namespace Insolence.Core
             // Update the current season
             currentSeason = date[1] / (yearLength / 4);
 
-            // set the time of day in the sky definition of Altos
-            skyDefinition.SetDayAndTime(date[0], timeOfDay);
-            currentAltosTime = skyDefinition.CurrentTime;
+            GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+            if (skyDefinition == null && gm.sceneReady)
+            {
+                skyDefinition = GameObject.Find("Sky Director").GetComponent<AltosSkyDirector>().skyDefinition;
+            }
+            else if(skyDefinition != null)
+            {
+                // set the time of day in the sky definition of Altos
+                skyDefinition.SetDayAndTime(date[0], timeOfDay);
+                currentAltosTime = skyDefinition.CurrentTime;
+            }
+
         }
         /// <summary>
         /// Get the current time of day in hours

@@ -125,26 +125,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &368623446
+--- !u!1001 &1098155335
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1058350314, guid: 98540e9610067b84e9788bcd331b0513, type: 3}
-      propertyPath: database
-      value: 
-      objectReference: {fileID: 11400000, guid: 337bf6fa8ada77848a41397f8958189b,
-        type: 2}
     - target: {fileID: 1094068368, guid: 98540e9610067b84e9788bcd331b0513, type: 3}
       propertyPath: newGameLevel
       value: MainWorld
       objectReference: {fileID: 0}
-    - target: {fileID: 1094068368, guid: 98540e9610067b84e9788bcd331b0513, type: 3}
-      propertyPath: savedGameButtonPrefab
-      value: 
-      objectReference: {fileID: 368623447}
     - target: {fileID: 4538057696000277041, guid: 98540e9610067b84e9788bcd331b0513,
         type: 3}
       propertyPath: m_RootOrder
@@ -427,12 +418,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98540e9610067b84e9788bcd331b0513, type: 3}
---- !u!1 &368623447 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2066729582, guid: 98540e9610067b84e9788bcd331b0513,
-    type: 3}
-  m_PrefabInstance: {fileID: 368623446}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1466428885
 GameObject:
   m_ObjectHideFlags: 0
