@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49766638dfb34b84b94dfe1c7b24a259, type: 3}
+  m_Name: Daggers of Stuck
+  m_EditorClassIdentifier: 
+  itemID: DAGGDW011
+  name: Daggers of Stuck
+  description: 
+  value: 0
+  type: 0
+  size: 2
+  weaponType: 6
+  armorType: 0
+  itemPrefab: {fileID: 2534255294755480569, guid: 36d129551521b9b4cac784b6dced0bbe, type: 3}
+  itemEquipPrefab: {fileID: 1852942662327352, guid: 507a40406fcf0d24d806435dea69f538, type: 3}
+  isTwoHanded: 0
+  pairedWeapon: 1
+  damage: 15
+  attackSpeed: 0
+  defense: 0
+  armor: 0
+  health: 0
+  stamina: 0
+  specialEffect: {fileID: 0}

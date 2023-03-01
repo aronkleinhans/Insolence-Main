@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49766638dfb34b84b94dfe1c7b24a259, type: 3}
+  m_Name: Mage Cape
+  m_EditorClassIdentifier: 
+  itemID: CAPE01
+  name: Mage Cape
+  description: 
+  value: 0
+  type: 1
+  size: 0
+  weaponType: 0
+  armorType: 7
+  itemPrefab: {fileID: 7602018611961694130, guid: 2c9456278a7021d4d81edd9bd911c68c, type: 3}
+  itemEquipPrefab: {fileID: 1526653528056978, guid: 0e13a47ccf769c1419d22560947120f2, type: 3}
+  isTwoHanded: 0
+  pairedWeapon: 0
+  damage: 0
+  attackSpeed: 0
+  defense: 0
+  armor: 0
+  health: 0
+  stamina: 0
+  specialEffect: {fileID: 0}

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c06b69c49b37f74fab7e0307d8c9290, type: 3}
+  m_Name: SellMiscItem
+  m_EditorClassIdentifier: 
+  name: Sell Misc Item
+  considerations:
+  - {fileID: 11400000, guid: bba2e1bfc762ce54993fcb256f5a368d, type: 2}
+  - {fileID: 11400000, guid: e4b6acfd5d7300e4d8ff157fe34b78f4, type: 2}
+  - {fileID: 11400000, guid: a0665bf5790fffa4bb632aaf8afbc2ce, type: 2}
+  - {fileID: 11400000, guid: 5e69b144c628bf1428838d0965437443, type: 2}
+  - {fileID: 11400000, guid: 49b3f77373e2a2d4c80ef931db94016a, type: 2}
+  - {fileID: 11400000, guid: 9f05c48d8f6a36040aa5cbbabb4c70a1, type: 2}

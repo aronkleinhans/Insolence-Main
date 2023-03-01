@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49766638dfb34b84b94dfe1c7b24a259, type: 3}
+  m_Name: Sword
+  m_EditorClassIdentifier: 
+  itemID: SWD001
+  name: sword
+  description: 
+  value: 0
+  type: 0
+  size: 2
+  weaponType: 1
+  armorType: 0
+  itemPrefab: {fileID: 1981033437270906863, guid: febe31b34db2ac14ca796ab466488a68, type: 3}
+  itemEquipPrefab: {fileID: 1737805685605432, guid: 02b50c2f99aa6f64b90172cff30899e9, type: 3}
+  isTwoHanded: 0
+  damage: 0
+  attackSpeed: 0
+  defense: 0
+  armor: 0
+  health: 0
+  stamina: 0
+  specialEffect: {fileID: 0}

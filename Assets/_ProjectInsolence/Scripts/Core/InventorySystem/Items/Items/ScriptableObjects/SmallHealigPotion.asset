@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49766638dfb34b84b94dfe1c7b24a259, type: 3}
+  m_Name: SmallHealigPotion
+  m_EditorClassIdentifier: 
+  _guid: fe5a7e98286e6b648b17af30927496d1
+  description: A strange bottle containing a liquid with a strong aroma...
+  itemID: POT001
+  name: Small Healing Potion
+  value: 12
+  hungerRestore: 0
+  icon: {fileID: 21300000, guid: ad2ac9432e245584f9340fb593962707, type: 3}
+  type: 2
+  size: 3
+  weaponType: 0
+  armorType: 0
+  consumableType: 3
+  itemPrefab: {fileID: 7661793136738755463, guid: 55872765040bdb94a9a3a6344922438e, type: 3}
+  itemEquipPrefab: {fileID: 1733023225965722, guid: d3c6f417ce01fa343be6b85bfc8fb119, type: 3}
+  isTwoHanded: 0
+  pairedWeapon: 0
+  damage: 0
+  attackSpeed: 0
+  defense: 0
+  armor: 0
+  health: 0
+  stamina: 0
+  specialEffect: {fileID: 11400000, guid: 55e5bef962796c44a9946fe9ca580dc3, type: 2}
