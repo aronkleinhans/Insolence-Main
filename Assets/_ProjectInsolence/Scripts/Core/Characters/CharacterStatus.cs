@@ -480,7 +480,7 @@ namespace Insolence.Core
         {
             if (billboard != null)
             {
-                billboard.UpdateStatsText(maxStamina, hunger, gold);
+                billboard.UpdateStatsText(currentMaxStamina, hunger, gold);
             }
         }
     }
