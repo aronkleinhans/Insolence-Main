@@ -45,6 +45,6 @@ MonoBehaviour:
     horizonColor: {r: 0.14150941, g: 0.08365965, b: 0.14150941, a: 0}
     zenithColor: {r: 0.13624065, g: 0.016064432, b: 0.1792453, a: 0}
     groundColor: {r: 0.103773594, g: 0.08859915, b: 0.102415465, a: 0}
-  initialTime: 14
-  timeSystem: 14
-  dayNightCycleDuration: 1
+  initialTime: 0
+  timeSystem: 0
+  dayNightCycleDuration: 0

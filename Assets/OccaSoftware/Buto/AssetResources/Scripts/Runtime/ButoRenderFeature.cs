@@ -237,12 +237,10 @@ namespace OccaSoftware.Buto
             public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData)
             {
                 RenderTextureDescriptor descriptor = renderingData.cameraData.cameraTargetDescriptor;
-                descriptor.msaaSamples = 1;
-				descriptor.colorFormat = RenderTextureFormat.DefaultHDR;
-				fogTargetDescriptor = descriptor;
-
-
-
+                fogTargetDescriptor = descriptor;
+                
+                fogTargetDescriptor.colorFormat = RenderTextureFormat.DefaultHDR;
+                fogTargetDescriptor.depthBufferBits = 0;
                 fogTargetDescriptor.width /= 2;
                 fogTargetDescriptor.height /= 2;
 
@@ -251,37 +249,26 @@ namespace OccaSoftware.Buto
                 cmd.GetTemporaryRT(lowResDepthTarget.id, fogTargetDescriptor);
                 cmd.GetTemporaryRT(taaTarget.id, fogTargetDescriptor);
                 
+                descriptor.colorFormat = RenderTextureFormat.DefaultHDR;
                 cmd.GetTemporaryRT(finalFogTarget.id, descriptor);
                 cmd.GetTemporaryRT(finalMergeTarget.id, descriptor);
 
 
-                ConfigureTarget(fogTarget.id);
-                ConfigureClear(ClearFlag.All, Color.black);
-				ConfigureTarget(lowResDepthTarget.id);
-				ConfigureClear(ClearFlag.All, Color.black);
-				ConfigureTarget(taaTarget.id);
-				ConfigureClear(ClearFlag.All, Color.black);
-				ConfigureTarget(finalFogTarget.id);
-				ConfigureClear(ClearFlag.All, Color.black);
-				ConfigureTarget(finalMergeTarget.id);
-				ConfigureClear(ClearFlag.All, Color.black);
-			}
+                cmd.SetRenderTarget(fogTarget.id);
+                cmd.ClearRenderTarget(true, true, Color.black);
+                cmd.SetRenderTarget(lowResDepthTarget.id);
+                cmd.ClearRenderTarget(true, true, Color.black);
+                cmd.SetRenderTarget(taaTarget.id);
+                cmd.ClearRenderTarget(true, true, Color.black);
+                cmd.SetRenderTarget(finalFogTarget.id);
+                cmd.ClearRenderTarget(true, true, Color.black);
+                cmd.SetRenderTarget(finalMergeTarget.id);
+                cmd.ClearRenderTarget(true, true, Color.black);
 
-			internal bool IsTaaEnabled(CameraType cameraType)
-			{
-				if (cameraType != CameraType.Game)
-					return false;
+                cmd.SetRenderTarget(renderingData.cameraData.renderer.cameraColorTarget);
+            }
 
-				if (!volumetricFog.temporalAntiAliasingEnabled.value)
-					return false;
-
-                if (!Application.isPlaying)
-                    return false;
-
-				return true;
-			}
-
-			internal bool HasAllMaterials()
+            internal bool HasAllMaterials()
 			{
                 if (fogMaterial != null &&
                     depthMaterial != null &&
@@ -308,7 +295,8 @@ namespace OccaSoftware.Buto
                 Camera camera = renderingData.cameraData.camera;
                 volumetricFog = VolumeManager.instance.stack.GetComponent<VolumetricFog>();
 
-                
+                if(IsTaaEnabled())
+                    ConfigureInput(ScriptableRenderPassInput.Motion);
 
                 SetMaterialParameters();
 
@@ -322,7 +310,7 @@ namespace OccaSoftware.Buto
                 RenderTargetHandle upscaleInput = fogTarget;
 
                 // TAA
-				if (IsTaaEnabled(camera.cameraType))
+				if (IsTaaEnabled())
 				{
                     GetTemporalAARenderTexture(renderingData.cameraData.camera, fogTargetDescriptor);
                     if (renderTextures[camera].RenderTexture != null)
@@ -363,6 +351,16 @@ namespace OccaSoftware.Buto
                 UnityEngine.Profiling.Profiler.EndSample();
 
 
+                bool IsTaaEnabled()
+				{
+                    if (camera.cameraType != CameraType.Game)
+                        return false;
+
+                    if (!volumetricFog.temporalAntiAliasingEnabled.value)
+                        return false;
+
+                    return true;
+				}
 
                 void SetMaterialParameters()
 				{
@@ -376,9 +374,7 @@ namespace OccaSoftware.Buto
                     void SetFogMaterialData()
 					{
                         fogMaterial.SetInt(Params.SampleCount.Id, volumetricFog.sampleCount.value);
-
-                        
-						fogMaterial.SetInt(Params.AnimateSamplePosition.Id, BoolToInt(GetSamplePositionAnimationState()));
+                        fogMaterial.SetInt(Params.AnimateSamplePosition.Id, BoolToInt(volumetricFog.animateSamplePosition.value));
                         SetKeyword(fogMaterial, Params.EnableSelfShadowing.Property, volumetricFog.selfShadowingEnabled.value);
                         fogMaterial.SetInt(Params.MaximumSelfShadowingOctaves.Id, volumetricFog.maximumSelfShadowingOctaves.value);
                         SetKeyword(fogMaterial, Params.EnableHorizonShadowing.Property, volumetricFog.horizonShadowingEnabled.value);
@@ -415,19 +411,9 @@ namespace OccaSoftware.Buto
                         fogMaterial.SetFloat(Params.DirectionalLightingRatio.Id, volumetricFog.directionalRatio.value);
                     }
 
-                    bool GetSamplePositionAnimationState()
-                    {
-						bool animateSamplePosition = false;
-						bool isAnimateSamplePositionNotOverriddenAndDisabledButTaaIsEnabled = !volumetricFog.animateSamplePosition.overrideState && !volumetricFog.animateSamplePosition.value && volumetricFog.temporalAntiAliasingEnabled.value;
-						bool isAnimateSamplePositionEnabled = volumetricFog.animateSamplePosition.value;
-						if (isAnimateSamplePositionEnabled || isAnimateSamplePositionNotOverriddenAndDisabledButTaaIsEnabled)
-							animateSamplePosition = true;
+                    
 
-                        return animateSamplePosition;
-					}
-
-
-					void SetTaaIntegrationRate()
+                    void SetTaaIntegrationRate()
 					{
                         float taaRate = volumetricFog.temporalAntiAliasingIntegrationRate.value;
                         if (isFirst)
@@ -471,7 +457,7 @@ namespace OccaSoftware.Buto
                             fogMaterial.SetVectorArray(Params.LightAngleButo.Id, angles);
                         }
                     }
-                    
+
                     void SetVolumeData()
                     {
                         Vector4[] positions = new Vector4[ButoCommon._MAXVOLUMECOUNT];
@@ -590,11 +576,11 @@ namespace OccaSoftware.Buto
             if (renderingData.cameraData.camera.TryGetComponent(out DisableButoRendering disableButoRendering))
                 return;
 
+            renderFogPass.ConfigureInput(ScriptableRenderPassInput.Color);
+            renderFogPass.ConfigureInput(ScriptableRenderPassInput.Depth);
 
-			renderFogPass.ConfigureInput(ScriptableRenderPassInput.Color | ScriptableRenderPassInput.Depth | ScriptableRenderPassInput.Motion);
-			
-			renderer.EnqueuePass(renderFogPass);
-		}
+            renderer.EnqueuePass(renderFogPass);
+        }
 
 
         private static class Params

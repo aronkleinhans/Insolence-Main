@@ -14,25 +14,42 @@ namespace OccaSoftware.Altos.Runtime
     {
         private const float horizonAngle = -5f;
 
-        
-        internal void Index()
+        private static List<SkyObject> _SkyObjects = new List<SkyObject>();
+        public static List<SkyObject> SkyObjects
 		{
-            AltosSkyDirector altosSkyDirector = FindObjectOfType<AltosSkyDirector>();
-            if (altosSkyDirector == null)
-                return;
+            get => _SkyObjects;
+		}
 
-            altosSkyDirector.RegisterSkyObject(this);
-        }
+        private static List<SkyObject> _Sun = new List<SkyObject>();
+        public static SkyObject Sun
+		{
+            get => _Sun.Count > 0 ? _Sun[0] : null;
+		}
 
-        internal void Delete()
+        internal void Index(SkyObject skyObject)
         {
-			AltosSkyDirector altosSkyDirector = FindObjectOfType<AltosSkyDirector>();
-			if (altosSkyDirector == null)
-				return;
+			if (!_SkyObjects.Contains(skyObject))
+			{
+                _SkyObjects.Add(skyObject);
+            }
+            
+            _SkyObjects = _SkyObjects.OrderByDescending(o => o.sortOrder).ToList();
 
-            altosSkyDirector.DeregisterSkyObject(this);
+            if (skyObject.type == ObjectType.Sun)
+            {
+				if (!_Sun.Contains(skyObject))
+				{
+                    _Sun.Add(skyObject);
+				}
+            }
         }
 
+        internal void Delete(SkyObject skyObject)
+        {
+            _SkyObjects.Remove(skyObject);
+            _Sun.Remove(skyObject);
+            _SkyObjects = _SkyObjects.OrderByDescending(o => o.sortOrder).ToList();
+        }
 
         private Transform earth
         {
@@ -168,7 +185,7 @@ namespace OccaSoftware.Altos.Runtime
 
         private void OnEnable()
 		{
-            Index();
+            Index(this);
             SetIcon();
 		}
 
@@ -189,12 +206,19 @@ namespace OccaSoftware.Altos.Runtime
 
         private void OnDisable()
 		{
-            Delete();
+            Delete(this);
 		}
+
+		private void OnDestroy()
+		{
+            Delete(this);
+		}
+
 
 		private void OnValidate()
         {
-            Index();
+            Delete(this);
+            Index(this);
             SetIcon();
 
 

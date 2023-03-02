@@ -5,16 +5,23 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/_ProjectInsolence/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/_ProjectInsolence/Scenes/MainMenu.unity
-    guid: 82d64eca0f5983d4abbfb1aa228d1fbf
+    guid: fbf17e68e9adc0241bb116b7f54d69f6
+  - enabled: 1
+    path: Assets/_ProjectInsolence/Scenes/testingGrounds.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/_ProjectInsolence/Scenes/testingGrounds 1.unity
+    guid: ca2a140fea4eae3468f90299886a4997
+  - enabled: 1
+    path: Assets/KinematicCharacterController/Examples/Scenes/CharacterPlayground.unity
+    guid: 49c21577d8fcba049bf2f94ab33e2dc2
+  - enabled: 0
+    path: Assets/PolygonFantasyKingdom/Scenes/Demo_01.unity
+    guid: 23d8661265deed742959416ea58475f7
   - enabled: 1
     path: Assets/_ProjectInsolence/Scenes/zzzLoadScreen.unity
-    guid: 9213e36a2c7ed2246b70fc1f995e1278
-  - enabled: 1
-    path: Assets/_ProjectInsolence/Scenes/MainWorld.unity
-    guid: 3b6a7ffde9deb924fa161c43c40fab73
-  m_configObjects: {}
+    guid: e749e5c1157e6124380d79b304fc393d
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 668aeb37c9eaa834cbedb31f6501ad1b, type: 2}

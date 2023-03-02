@@ -3,14 +3,38 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Interactable
+  - DynamicRoot
+  - GameManager
+  - portal
+  - Resource
+  - NPC
+  - restSpot
+  - dumpSpot
+  - Conductor
+  - Freezable
+  - PPaint
+  - Tornado
+  - Grass
+  - Flamer
+  - Flammable
+  - SkyMasterTree
+  - water
+  - Butter
+  - NoForcePDM
+  - NPCPOI
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
+  - Targetable
+  - TerrainSM
+  - Background
+  - Moon
   - 
   - 
   - 
@@ -32,11 +56,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - IgnoreItemCollision
   m_SortingLayers:
   - name: Default
     uniqueID: 0

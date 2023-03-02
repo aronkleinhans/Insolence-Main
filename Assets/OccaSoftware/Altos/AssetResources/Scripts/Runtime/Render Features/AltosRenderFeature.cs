@@ -301,29 +301,24 @@ namespace OccaSoftware.Altos.Runtime
                     stars.Draw(ref cmd, skyDirector.skyDefinition);
 
                 // Draw Sun / Moon
-                int skyObjectCount = Mathf.Min(skyDirector.SkyObjects.Count, _MAX_SKY_OBJECT_COUNT);
-
-				for (int i = 0; i < skyObjectCount; i++)
+                for (int i = 0; i < SkyObject.SkyObjects.Count; i++)
                 {
-                    SkyObject skyObject = skyDirector.SkyObjects[i];
-                    
-                    if (skyObject == null)
+                    if (SkyObject.SkyObjects[i] == null)
                         continue;
 
-
-					m = new Matrix4x4();
-                    m.SetTRS(skyObject.positionRelative + renderingData.cameraData.worldSpaceCameraPos, skyObject.GetRotation(), Vector3.one * skyObject.CalculateSize());
+                    m = new Matrix4x4();
+                    m.SetTRS(SkyObject.SkyObjects[i].positionRelative + renderingData.cameraData.worldSpaceCameraPos, SkyObject.SkyObjects[i].GetRotation(), Vector3.one * SkyObject.SkyObjects[i].CalculateSize());
                     
-                    cmd.DrawMesh(skyObject.Quad, m, skyObject.GetMaterial());
-                    directions[i] = skyObject.GetDirection();
-                    colors[i] = skyObject.GetColor();
-                    falloffs[i] = skyObject.GetFalloff();
+                    cmd.DrawMesh(SkyObject.SkyObjects[i].Quad, m, SkyObject.SkyObjects[i].GetMaterial());
+                    directions[i] = SkyObject.SkyObjects[i].GetDirection();
+                    colors[i] = SkyObject.SkyObjects[i].GetColor();
+                    falloffs[i] = SkyObject.SkyObjects[i].GetFalloff();
                 }
 
                 atmosphereMaterial.SetVectorArray(SkyShaderParams._Direction, directions);
                 atmosphereMaterial.SetVectorArray(SkyShaderParams._Color, colors);
                 atmosphereMaterial.SetFloatArray(SkyShaderParams._Falloff, falloffs);
-                atmosphereMaterial.SetInt(SkyShaderParams._Count, skyObjectCount);
+                atmosphereMaterial.SetInt(SkyShaderParams._Count, Mathf.Min(SkyObject.SkyObjects.Count, _MAX_SKY_OBJECT_COUNT));
 
                 // Draw Sky
                 if (skyDirector.skyDefinition != null)
@@ -991,41 +986,6 @@ namespace OccaSoftware.Altos.Runtime
                 }
             }
 
-            private struct SunData
-            {
-                public Vector3 direction;
-				public Vector3 forward;
-				public Vector3 right;
-				public Vector3 up;
-            }
-
-            bool GetSunData(out SunData sunData)
-            {
-                sunData = new SunData();
-
-                AltosSkyDirector altosSkyDirector = FindObjectOfType<AltosSkyDirector>();
-				if (altosSkyDirector != null && altosSkyDirector.Sun != null)
-				{
-					sunData.direction = altosSkyDirector.Sun.GetForward();
-					sunData.forward = altosSkyDirector.Sun.GetChild().forward;
-                    sunData.right = altosSkyDirector.Sun.GetChild().right;
-                    sunData.up = altosSkyDirector.Sun.GetChild().up;
-                    return true;
-				}
-				else
-				{
-					SetMainLightShaderProperties setMainLightShaderProperties = FindObjectOfType<SetMainLightShaderProperties>();
-					if (setMainLightShaderProperties != null)
-					{
-                        sunData.direction = setMainLightShaderProperties.transform.forward;
-						sunData.forward = setMainLightShaderProperties.transform.forward;
-						sunData.right = setMainLightShaderProperties.transform.right;
-						sunData.up = setMainLightShaderProperties.transform.up;
-                        return true;
-					}
-				}
-                return false;
-			}
 
             public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
 			{
@@ -1036,34 +996,27 @@ namespace OccaSoftware.Altos.Runtime
 				CoreUtils.SetKeyword(cmd, decalBuffers[1], false);
 				CoreUtils.SetKeyword(cmd, decalBuffers[2], false);
 				RenderTargetIdentifier source = renderingData.cameraData.renderer.cameraColorTarget;
-                
-                if(GetSunData(out SunData sunData))
-                {
-					RenderShadows(cmd, renderingData, source, sunData);
-					DrawScreenSpaceShadows(cmd, source);
-					if (skyDirector.cloudDefinition.screenShadows)
-					{
-						RenderToScreen(cmd, source);
-					}
-				}
 
-				context.ExecuteCommandBuffer(cmd);
+                RenderShadows(cmd, renderingData, source);
+                DrawScreenSpaceShadows(cmd, source);
+				if (skyDirector.cloudDefinition.screenShadows)
+				{
+                    RenderToScreen(cmd, source);
+                }
+
+                context.ExecuteCommandBuffer(cmd);
                 cmd.Clear();
                 CommandBufferPool.Release(cmd);
                 Profiler.EndSample();
 
-                void RenderShadows(CommandBuffer cmd, RenderingData renderingData, RenderTargetIdentifier source, SunData sunData)
+                void RenderShadows(CommandBuffer cmd, RenderingData renderingData, RenderTargetIdentifier source)
                 {
                     const int zFar = 30000;
                     int halfWidth = (int)Mathf.Min(skyDirector.cloudDefinition.shadowDistance, Mathf.Min(renderingData.cameraData.camera.farClipPlane, skyDirector.cloudDefinition.cloudFadeDistance * 1000));
-
                     
+                    Vector3 shadowCasterCameraPosition = renderingData.cameraData.worldSpaceCameraPos - SkyObject.Sun.GetForward() * zFar;
 
-
-                    //if(SkyObject.Sun == null)
-                    Vector3 shadowCasterCameraPosition = renderingData.cameraData.worldSpaceCameraPos - sunData.direction * zFar;
-
-                    Matrix4x4 viewMatrix = MatrixHandler.SetupViewMatrix(shadowCasterCameraPosition, sunData.forward, sunData.up);
+                    Matrix4x4 viewMatrix = MatrixHandler.SetupViewMatrix(shadowCasterCameraPosition, SkyObject.Sun.GetChild().forward, SkyObject.Sun.GetChild().up);
                     Matrix4x4 projectionMatrix = MatrixHandler.SetupProjectionMatrix(halfWidth, zFar);
 
 
@@ -1072,9 +1025,9 @@ namespace OccaSoftware.Altos.Runtime
                     Matrix4x4 worldToShadow = MatrixHandler.ConvertToWorldToShadowMatrix(projectionMatrix * viewMatrix);
                     cmd.SetGlobalMatrix(CloudShaderParamHandler.ShaderParams.Shadows._CloudShadow_WorldToShadowMatrix, worldToShadow);
 
-                    cmd.SetGlobalVector(CloudShaderParamHandler.ShaderParams.Shadows._ShadowCasterCameraForward, sunData.forward);
-                    cmd.SetGlobalVector(CloudShaderParamHandler.ShaderParams.Shadows._ShadowCasterCameraUp, sunData.up);
-                    cmd.SetGlobalVector(CloudShaderParamHandler.ShaderParams.Shadows._ShadowCasterCameraRight, sunData.right);
+                    cmd.SetGlobalVector(CloudShaderParamHandler.ShaderParams.Shadows._ShadowCasterCameraForward, SkyObject.Sun.GetChild().transform.forward);
+                    cmd.SetGlobalVector(CloudShaderParamHandler.ShaderParams.Shadows._ShadowCasterCameraUp, SkyObject.Sun.GetChild().transform.up);
+                    cmd.SetGlobalVector(CloudShaderParamHandler.ShaderParams.Shadows._ShadowCasterCameraRight, SkyObject.Sun.GetChild().transform.right);
                     cmd.SetGlobalInt(CloudShaderParamHandler.ShaderParams._ShadowPass, 1);
                     cmd.SetGlobalVector(CloudShaderParamHandler.ShaderParams._RenderTextureDimensions, new Vector4(1f / (int)skyDirector.cloudDefinition.shadowResolution, 1f / (int)skyDirector.cloudDefinition.shadowResolution, (int)skyDirector.cloudDefinition.shadowResolution, (int)skyDirector.cloudDefinition.shadowResolution));
 

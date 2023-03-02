@@ -1,0 +1,16 @@
+{
+    "name": "Ingame.Debug.Console",
+    "rootNamespace": "",
+    "references": [
+        "GUID:bf4f622f85dba0c44b36e22d528d982f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

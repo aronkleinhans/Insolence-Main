@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d0e08c78d062f443844ba88369c86ec, type: 3}
   m_Name: Cloud Definition
   m_EditorClassIdentifier: 
-  pageSelection: 0
+  pageSelection: 2
   lowAltitudeModelingState: 1
   lowAltitudeLightingState: 1
   lowAltitudeWeatherState: 1
@@ -42,7 +42,7 @@ MonoBehaviour:
   depthCullOptions: 1
   subpixelJitterEnabled: 1
   castShadowsEnabled: 1
-  screenShadows: 1
+  screenShadows: 0
   shadowStrength: 0.863
   shadowResolution: 1024
   shadowDistance: 5000

@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.Profiling;
-using System.Collections.Generic;
-using System.Linq;
+using System;
 using UnityEngine.Rendering;
 
 namespace OccaSoftware.Altos.Runtime
@@ -33,42 +32,6 @@ namespace OccaSoftware.Altos.Runtime
 		public static float _HOURS_TO_DEGREES = 15f;
 		private bool isSetupCorrect = false;
 
-
-		private List<SkyObject> _SkyObjects = new List<SkyObject>();
-		public List<SkyObject> SkyObjects
-		{
-			get => _SkyObjects;
-		}
-
-		private List<SkyObject> _Sun = new List<SkyObject>();
-		public SkyObject Sun
-		{
-			get => _Sun.Count > 0 ? _Sun[0] : null;
-		}
-
-		internal void RegisterSkyObject(SkyObject skyObject)
-		{
-			if (!_SkyObjects.Contains(skyObject))
-			{
-				_SkyObjects.Add(skyObject);
-			}
-			
-			if(skyObject.type == SkyObject.ObjectType.Sun)
-			{
-				if (!_Sun.Contains(skyObject))
-				{
-					_Sun.Add(skyObject);
-				}
-			}
-
-			_SkyObjects = _SkyObjects.OrderByDescending(o => o.sortOrder).ToList();
-		}
-
-		internal void DeregisterSkyObject(SkyObject skyObject)
-		{
-			_SkyObjects.Remove(skyObject);
-			_Sun.Remove(skyObject);
-		}
 
 		private void OnEnable()
 		{

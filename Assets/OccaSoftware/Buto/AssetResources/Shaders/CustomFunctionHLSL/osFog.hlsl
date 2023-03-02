@@ -269,9 +269,9 @@ half GetFogFalloff(float3 RayPosition)
 	return a;
 }
 
-half CalculateExponentialHeightFog(half extinction, half fogExp, half rayOriginY, half rayLength)
+half CalculateExponentialHeightFog(half extinction, half fogExp, half rayOrigin_Y, half rayLength)
 {
-	return saturate((extinction / fogExp) * exp(-rayOriginY * fogExp) * (1.0 - exp(-rayLength * rayDirection.y * fogExp)) / rayDirection.y);
+	return saturate((extinction / fogExp) * exp(-rayOrigin_Y * fogExp) * (1.0 - exp(-rayLength * rayDirection.y * fogExp)) / rayDirection.y);
 }
 
 
@@ -327,8 +327,6 @@ out half3 Color, out half Alpha)
 	rayDirection = viewVector / viewLength;
 	
 	half targetRayDistance = MaxDistanceVolumetric;
-	
-	// Prevents early culling if the far clip plane is quite short
 	if(depth01 < 1.0)
 		targetRayDistance = min(targetRayDistance, realDepth);
 	
@@ -356,7 +354,8 @@ out half3 Color, out half Alpha)
 	half invMaxRayDistance = 1.0 / MaxDistanceVolumetric;
 	
 	half3 rayPosition = RayOrigin;
-	half rayDepth_previous, rayDepth_current;
+	half lowerLimit, rayDepth_previous, rayDepth_current;
+	lowerLimit = 0;
 	rayDepth_previous = 0;
 	rayDepth_current = 0;
 	half3 directionalColor = GetDirectionalLightOverrides(_DirectionalLightingForward, _DirectionalLightingBack, _DirectionalLightingRatio);
@@ -369,20 +368,15 @@ out half3 Color, out half Alpha)
 		0.5 * AttenuationBoundarySize,
 		1.0 * AttenuationBoundarySize
 	};
-	half stepSize = targetRayDistance * invStepCount;
-	rayDepth_current += random * stepSize;
+	
 	
 	for (int i = 1; i <= SampleCount; i++)
 	{
 		// Positioning
 		half ratio = half(i) * invStepCount;
-		
-		bool lastRun = false;
-		if(rayDepth_current > targetRayDistance)
-		{
-			rayDepth_current = targetRayDistance;
-			lastRun = true;
-		}
+		half upperLimit = ratio * targetRayDistance;
+		rayDepth_current = lerp(lowerLimit, upperLimit, random);
+		lowerLimit = upperLimit;
 		
 		rayPosition = RayOrigin + rayDirection * rayDepth_current;
 		half stepLength = rayDepth_current - rayDepth_previous;
@@ -392,7 +386,7 @@ out half3 Color, out half Alpha)
 		half sampleDensity = GetFogDensityByHeight(AttenuationBoundarySize, BaseHeight, rayPosition) * GetFogDensityByNoise(NoiseTexture, NoiseSampler, rayPosition, invNoiseScale, NoiseWindVelocity, NoiseMin, NoiseMax, Octaves, 0) * GetFogFalloff(rayPosition);
 		half e = 1.0;
 		#if !_BUTO_ANALYTIC_FOG_ENABLED
-		e = (1.0 - ratio) * (1.0 - ratio);
+		e = lerp(1.0, 0.0, ratio);
 		#endif
 		
 		half sampleExtinction = extinction * sampleDensity * e;
@@ -454,13 +448,7 @@ out half3 Color, out half Alpha)
 			
 			// Apply Transmittance
 			Alpha *= transmittance;
-			
 		}
-		
-		if(lastRun)
-			break;
-			
-		rayDepth_current += stepSize;
 	}
 	
 	#if _BUTO_ANALYTIC_FOG_ENABLED

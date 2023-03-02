@@ -1,0 +1,904 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1115078414031544
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4344190643376426}
+  m_Layer: 0
+  m_Name: Cape_03
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4344190643376426
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115078414031544}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.3312027e-32, y: -0.26785937, z: -0.009900341}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4917646318903982}
+  m_Father: {fileID: 4835692870977982}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1188886807496674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4469604281225612}
+  - component: {fileID: 137021517093461570}
+  m_Layer: 0
+  m_Name: SM_Chr_King_Cape_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4469604281225612
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188886807496674}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.1443357, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4751516612434566}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &137021517093461570
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188886807496674}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 71e41e43b459a244abaf5acca76b89ee, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 4300000, guid: cef1a67a5bafdb34fa6dce98924fe4a9, type: 3}
+  m_Bones:
+  - {fileID: 4695018553926954}
+  - {fileID: 4570435151972298}
+  - {fileID: 4835692870977982}
+  - {fileID: 4344190643376426}
+  - {fileID: 4917646318903982}
+  - {fileID: 4190768311711516}
+  - {fileID: 4002258134794432}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 4695018553926954}
+  m_AABB:
+    m_Center: {x: 0, y: -0.53453654, z: -0.14886987}
+    m_Extent: {x: 0.3662018, y: 0.6516668, z: 0.13142109}
+  m_DirtyAABB: 0
+--- !u!1 &1236671142737660
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4695018553926954}
+  m_Layer: 0
+  m_Name: Cape_Rig
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4695018553926954
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236671142737660}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4570435151972298}
+  m_Father: {fileID: 4751516612434566}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1394866410355100
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4002258134794432}
+  m_Layer: 0
+  m_Name: Cape_06
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4002258134794432
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394866410355100}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.4314632e-18, y: -0.14856666, z: -0.009791927}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4190768311711516}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1526653528056978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4751516612434566}
+  - component: {fileID: 95495536748901566}
+  - component: {fileID: 4226352230693761876}
+  m_Layer: 0
+  m_Name: SM_Chr_Attach_Mage_Cape_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4751516612434566
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526653528056978}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4695018553926954}
+  - {fileID: 4469604281225612}
+  - {fileID: 4772527113404790}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &95495536748901566
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526653528056978}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: cef1a67a5bafdb34fa6dce98924fe4a9, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &4226352230693761876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526653528056978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29136cace65438643aff5fff9bb8f519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectState:
+    guid: 5b34c7c8-0b03-4d7e-863d-9e4e38559adf
+    objectName: 
+    objectTag: 
+    objectLayer: 0
+    sceneName: 
+    position: []
+    rotation: []
+    isPrefab: 1
+    prefabGuid: 5b34c7c8-0b03-4d7e-863d-9e4e38559adf
+    childrenGuids: []
+--- !u!1 &1527111027384248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4835692870977982}
+  m_Layer: 0
+  m_Name: Cape_02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4835692870977982
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527111027384248}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: -0.2066487, z: -0.04158907}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4344190643376426}
+  m_Father: {fileID: 4570435151972298}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1608122798716800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4570435151972298}
+  m_Layer: 0
+  m_Name: Cape_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4570435151972298
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608122798716800}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.027641196, z: -0.13511305}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4835692870977982}
+  m_Father: {fileID: 4695018553926954}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1742624835064448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4772527113404790}
+  - component: {fileID: 137907953558131070}
+  - component: {fileID: 6346241416546182778}
+  m_Layer: 0
+  m_Name: SM_Chr_Mage_Cape_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4772527113404790
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742624835064448}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.3782696e-15, y: -1.3374461, z: 0.03266225}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4751516612434566}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &137907953558131070
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742624835064448}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 71e41e43b459a244abaf5acca76b89ee, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 4300002, guid: cef1a67a5bafdb34fa6dce98924fe4a9, type: 3}
+  m_Bones:
+  - {fileID: 4695018553926954}
+  - {fileID: 4570435151972298}
+  - {fileID: 4835692870977982}
+  - {fileID: 4344190643376426}
+  - {fileID: 4917646318903982}
+  - {fileID: 4190768311711516}
+  - {fileID: 4002258134794432}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 4695018553926954}
+  m_AABB:
+    m_Center: {x: 0.0025791228, y: -0.54838884, z: -0.15505177}
+    m_Extent: {x: 0.33752516, y: 0.6387286, z: 0.11869371}
+  m_DirtyAABB: 0
+--- !u!183 &6346241416546182778
+Cloth:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742624835064448}
+  m_Enabled: 1
+  m_StretchingStiffness: 1
+  m_BendingStiffness: 0.8
+  m_UseTethers: 0
+  m_UseGravity: 1
+  m_Damping: 0.3
+  m_ExternalAcceleration: {x: 0, y: 0, z: 0}
+  m_RandomAcceleration: {x: 0, y: 0, z: 0}
+  m_WorldVelocityScale: 0.5
+  m_WorldAccelerationScale: 0.5
+  m_Friction: 0
+  m_CollisionMassScale: 1
+  m_UseContinuousCollision: 1
+  m_UseVirtualParticles: 1
+  m_SolverFrequency: 120
+  m_SleepThreshold: 0.1
+  m_Coefficients:
+  - maxDistance: 0.7
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.7
+    collisionSphereDistance: 0.1
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0.7
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.7
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 0
+    collisionSphereDistance: 0
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0.7
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 0
+    collisionSphereDistance: 0
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0.7
+    collisionSphereDistance: 0.1
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.7
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.2
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.2
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.2
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.2
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.2
+    collisionSphereDistance: 0.1
+  - maxDistance: 0
+    collisionSphereDistance: 0
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0
+  - maxDistance: 0
+    collisionSphereDistance: 0
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0
+  - maxDistance: 0
+    collisionSphereDistance: 0
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0
+  - maxDistance: 0
+    collisionSphereDistance: 0
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0
+  - maxDistance: 0
+    collisionSphereDistance: 0
+  - maxDistance: 0
+    collisionSphereDistance: 0
+  - maxDistance: 0
+    collisionSphereDistance: 0
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0.2
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.2
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.2
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.2
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.2
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.2
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.2
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.7
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.7
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.7
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.7
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.7
+    collisionSphereDistance: 0.1
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 1.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.7
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.7
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.2
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.2
+    collisionSphereDistance: 0.1
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0
+    collisionSphereDistance: 0.2
+  - maxDistance: 0.2
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.2
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.7
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.7
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.7
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.7
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.7
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.7
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.7
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.7
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.7
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.7
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 0
+    collisionSphereDistance: 0
+  - maxDistance: 0
+    collisionSphereDistance: 0
+  - maxDistance: 0.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 0
+    collisionSphereDistance: 0
+  - maxDistance: 0
+    collisionSphereDistance: 0
+  - maxDistance: 0.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 0.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1
+    collisionSphereDistance: 0.1
+  - maxDistance: 1.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 1.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 1.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 1.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 1.5
+    collisionSphereDistance: 0.1
+  - maxDistance: 1.5
+    collisionSphereDistance: 0.1
+  m_CapsuleColliders:
+  - {fileID: 0}
+  m_SphereColliders: []
+  m_SelfCollisionDistance: 0.12
+  m_SelfCollisionStiffness: 0.13
+  m_SelfAndInterCollisionIndices: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000500000005100000052000000530000005400000055000000560000005700000058000000590000005a0000005b0000005c0000005d0000005e0000005f000000600000006100000062000000630000006400000065000000660000006700000068000000690000006a0000006b0000006c0000006d0000006e0000006f000000700000007100000072000000730000007400000075000000760000007700000078000000790000007a0000007b0000007c0000007d0000007e0000007f000000800000008100000082000000830000008400000085000000860000008700000088000000890000008a0000008b0000008c0000008d0000008e0000008f000000900000009100000092000000930000009400000095000000960000009700000098000000990000009a0000009b0000009c0000009d0000009e0000009f000000a0000000a1000000a2000000a3000000a4000000a5000000a6000000a7000000a8000000a9000000aa000000ab000000ac000000ad000000ae000000af000000b0000000b1000000b2000000b3000000b4000000b5000000b6000000b7000000b8000000b9000000ba000000bb000000bc000000bd000000
+  m_VirtualParticleWeights:
+  - {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+  - {x: 0.6666667, y: 0.16666667, z: 0.16666667}
+  - {x: 0.5, y: 0.5, z: 0}
+  m_VirtualParticleIndices: 
+--- !u!1 &1765382719627742
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4917646318903982}
+  m_Layer: 0
+  m_Name: Cape_04
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4917646318903982
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765382719627742}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.953076e-19, y: -0.28743306, z: -0.011811485}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4190768311711516}
+  m_Father: {fileID: 4344190643376426}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1904678379053122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4190768311711516}
+  m_Layer: 0
+  m_Name: Cape_05
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4190768311711516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904678379053122}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.6742393e-19, y: -0.23777786, z: -0.009892406}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4002258134794432}
+  m_Father: {fileID: 4917646318903982}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

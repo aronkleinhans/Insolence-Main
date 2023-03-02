@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using Insolence.Core;
 
 namespace IngameDebugConsole.Commands
 {
@@ -54,5 +55,16 @@ namespace IngameDebugConsole.Commands
 		{
 			SceneManager.LoadScene( SceneManager.GetActiveScene().name, LoadSceneMode.Single );
 		}
-	}
+
+        [ConsoleMethod("spawnItem", "Spawns an Item by ID"), UnityEngine.Scripting.Preserve]
+
+        public static void SpawnItem(string itemID, int amount)
+        {
+			// Spawn Item
+			for (int i = 0; i < amount; i++)
+			{
+				GameObject.FindWithTag("Player").GetComponent<Inventory>().SpawnItem(itemID);
+			}
+        }
+    }
 }

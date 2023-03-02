@@ -1,7 +1,6 @@
 #ifndef OSDEPTHUPSCALE_INCLUDE
 #define OSDEPTHUPSCALE_INCLUDE
 
-SamplerState my_linear_clamp_sampler;
 void DepthAwareUpscale_half(half2 UV, Texture2D FogTex, SamplerState Sampler, half2 Dimensions, Texture2D Depth_LowRes, half Depth_HighRes, out half3 Color, out half Alpha)
 {
 	// Out Value Setup
@@ -41,7 +40,7 @@ void DepthAwareUpscale_half(half2 UV, Texture2D FogTex, SamplerState Sampler, ha
 	}
 	
 	r = SAMPLE_TEXTURE2D_LOD(FogTex, Sampler, UV + texcoords[minDistId], 0);
-	//r = FogTex.SampleLevel(my_linear_clamp_sampler, UV, 0);
+	
 	Color = r.rgb;
 	Alpha = r.a;
 	#endif

@@ -9,12 +9,9 @@ namespace OccaSoftware.Altos.Demo
 		private void OnEnable()
 		{
 			skyDirector = FindObjectOfType<AltosSkyDirector>();
-			if(skyDirector != null)
-			{
-				skyDirector.skyDefinition.OnDayChanged += OnDayChanged;
-				skyDirector.skyDefinition.OnHourChanged += OnHourChanged;
-				skyDirector.skyDefinition.OnPeriodChanged += OnPeriodChanged;
-			}
+			skyDirector.skyDefinition.OnDayChanged += OnDayChanged;
+			skyDirector.skyDefinition.OnHourChanged += OnHourChanged;
+			skyDirector.skyDefinition.OnPeriodChanged += OnPeriodChanged;
 		}
 
 		void OnDayChanged()
@@ -35,12 +32,9 @@ namespace OccaSoftware.Altos.Demo
 
 		private void OnDisable()
 		{
-			if(skyDirector != null)
-			{
-				skyDirector.skyDefinition.OnDayChanged -= OnDayChanged;
-				skyDirector.skyDefinition.OnHourChanged -= OnHourChanged;
-				skyDirector.skyDefinition.OnPeriodChanged -= OnPeriodChanged;
-			}
+			skyDirector.skyDefinition.OnDayChanged -= OnDayChanged;
+			skyDirector.skyDefinition.OnHourChanged -= OnHourChanged;
+			skyDirector.skyDefinition.OnPeriodChanged -= OnPeriodChanged;
 		}
 	}
 }
