@@ -282,7 +282,7 @@ namespace Insolence.Core
 
         private IEnumerator RunCD()
         {
-            while(currentStamina != maxStamina)
+            while(currentStamina != currentMaxStamina)
             {
                 canRun = false;
                 yield return new WaitForSeconds(1);
