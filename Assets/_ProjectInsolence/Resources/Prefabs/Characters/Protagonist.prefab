@@ -23616,10 +23616,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'Neck'\n\tTransform 'Head'\n\tTransform 'Neck'\n\tTransform
-    'Head'\n\tTransform 'Neck'\n\tTransform 'Head'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -23635,10 +23632,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a89a4941d094404408e6705d03aa9ced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  footPlacementOffset: 0
+  footPlacementOffset: 0.06
   groundLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 2147483647
 --- !u!114 &7728674327246878515
 MonoBehaviour:
   m_ObjectHideFlags: 0
