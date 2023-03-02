@@ -273,7 +273,7 @@ namespace Insolence.Core
             }
 
             //start run CD if stamina == 0, until stamina is equal to max stamina
-            if (currentStamina <= 0 && canRegenerate)
+            if (currentStamina <= 0)
             {
                 StartCoroutine(RunCD());
             }
@@ -282,7 +282,7 @@ namespace Insolence.Core
 
         private IEnumerator RunCD()
         {
-            while(currentStamina == maxStamina)
+            while(currentStamina != maxStamina)
             {
                 canRun = false;
                 yield return new WaitForSeconds(1);
