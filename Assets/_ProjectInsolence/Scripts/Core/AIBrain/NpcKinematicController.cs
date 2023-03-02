@@ -14,7 +14,8 @@ namespace Insolence.AIBrain.KCC
         private Vector3 target;
         private NavMeshAgent agent;
         private NPCAIController npc;
-        
+        private CharacterStatus status;
+
 
         // Use this for initialization
         void OnEnable()
@@ -22,6 +23,7 @@ namespace Insolence.AIBrain.KCC
             agent = GetComponent<NavMeshAgent>();
             character = GetComponent<KineCharacterController>();
             npc = GetComponent<NPCAIController>();
+            status = GetComponent<CharacterStatus>();
         }
 
         void Update()
@@ -29,10 +31,18 @@ namespace Insolence.AIBrain.KCC
             ApplyInputs(agent.velocity);
 
             //update the max speed of the character based on distance to target
-            if (Vector3.Distance(transform.position, target) > 20f && GetComponent<CharacterStatus>().currentStamina > 0)
+            if (Vector3.Distance(transform.position, target) > 20f)
             {
-                character.MaxStableMoveSpeed = 5f;
-                character.isRunning = true;
+                if (status.currentStamina > 0 && status.canRun)
+                {
+                    character.MaxStableMoveSpeed = 5.5f;
+                    character.isRunning = true;
+                }
+                else
+                {
+                    character.MaxStableMoveSpeed = 2f;
+                    character.isRunning = false;
+                }
             }
             else
             {

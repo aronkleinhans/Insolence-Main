@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using Insolence.UI;
 using Insolence.AIBrain;
 using Insolence.KinematicCharacterController;
+using System.Collections;
+using UnityEngine.InputSystem.LowLevel;
 
 namespace Insolence.Core
 {
@@ -175,6 +177,7 @@ namespace Insolence.Core
         }
 
         bool canRegenerate;
+        public bool canRun = true;
         
         [SerializeField] private Billboard billboard;
 
@@ -244,25 +247,7 @@ namespace Insolence.Core
             UpdateWeaponDamage();
             SetObjectName();
 
-            //call regenerateStamina() if stamina is less than current max stamina every 30 frames
-            if (currentStamina < currentMaxStamina && !GetComponent<KineCharacterController>().isRunning && Time.frameCount % 30 == 0)
-            {
-                regenerateStamina();
-            }
-
-
-            //call RunConsumeStamina() if KineCharacterController.isRunning is true every 30 frames
-            if (GetComponent<KineCharacterController>().isRunning && Time.frameCount % 30 == 0)
-            {
-                ConsumeStamina(_runStaminaCost);
-            }
-
-            //stop regen if stamina == 0, until stamina is greater than 20% of max stamina
-            if (currentStamina <= 0 && canRegenerate)
-            {
-                canRegenerate = false;
-            }
-            else if (currentStamina <= maxStamina * 0.2f && !canRegenerate)
+            if (GetComponent<KineCharacterController>().isRunning)
             {
                 canRegenerate = false;
             }
@@ -270,9 +255,42 @@ namespace Insolence.Core
             {
                 canRegenerate = true;
             }
+            
+            //call regenerateStamina() if stamina is less than current max stamina every 30 frames
+            if (currentStamina < currentMaxStamina && Time.frameCount % 30 == 0)
+            {
+                if (canRegenerate)
+                {
+                    regenerateStamina();
+                }
+
+            }
+
+            //call RunConsumeStamina() if KineCharacterController.isRunning is true every 30 frames
+            if (GetComponent<KineCharacterController>().isRunning && Time.frameCount % 30 == 0)
+            {
+                ConsumeStamina(_runStaminaCost);
+            }
+
+            //start run CD if stamina == 0, until stamina is equal to max stamina
+            if (currentStamina <= 0 && canRegenerate)
+            {
+                StartCoroutine(RunCD());
+            }
 
         }
 
+        private IEnumerator RunCD()
+        {
+            while(currentStamina == maxStamina)
+            {
+                canRun = false;
+                yield return new WaitForSeconds(1);
+            }
+
+            canRun = true;
+        }
+        
         private void regenerateStamina()
         {
             if (currentStamina < maxStamina)

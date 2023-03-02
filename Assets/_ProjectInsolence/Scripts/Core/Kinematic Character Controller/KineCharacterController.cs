@@ -100,6 +100,8 @@ namespace Insolence.KinematicCharacterController
 
         private Vector3 lastInnerNormal = Vector3.zero;
         private Vector3 lastOuterNormal = Vector3.zero;
+
+        private CharacterStatus status;
         void Start()
         {
             // Handle initial state
@@ -107,6 +109,8 @@ namespace Insolence.KinematicCharacterController
 
             Motor = GetComponent<KinematicCharacterMotor>();
             Motor.CharacterController = this;
+
+            status = GetComponent<CharacterStatus>();
         }
         private void Update()
         {
@@ -217,7 +221,7 @@ namespace Insolence.KinematicCharacterController
                         }
                         if (inputs.DashDown)
                         {
-                            if(GetComponent<CharacterStatus>().currentStamina > 0)
+                            if(status.currentStamina > 0 && status.canRun)
                             {
                                 MaxStableMoveSpeed = 5.5f;
                                 isRunning = true;
