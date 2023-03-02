@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03fc8faa9dbae3543b942f4ae1ad8fc3, type: 3}
   m_Name: IsDayTime
   m_EditorClassIdentifier: 
-  name: IsDayTime
+  name: 
