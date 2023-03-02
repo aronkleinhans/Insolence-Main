@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Insolence.AIBrain.Considerations
 {
     [CreateAssetMenu(fileName = "IsDayTime", menuName = "Insolence/AIBrain/Considerations/IsDayTime", order = 1)]
-    public class IsDayTime : Consideration
+    public class IsDaytime : Consideration
     {
         public override float ScoreConsideration(NPCAIController npc)
         {
