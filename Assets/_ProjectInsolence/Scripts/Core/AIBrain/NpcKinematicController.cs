@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.AI; 
 using UnityEngine;
 using Insolence.KinematicCharacterController;
+using Insolence.Core;
 
 namespace Insolence.AIBrain.KCC
 {
@@ -28,13 +29,15 @@ namespace Insolence.AIBrain.KCC
             ApplyInputs(agent.velocity);
 
             //update the max speed of the character based on distance to target
-            if (Vector3.Distance(transform.position, target) > 20f)
+            if (Vector3.Distance(transform.position, target) > 20f && GetComponent<CharacterStatus>().currentStamina > 0)
             {
                 character.MaxStableMoveSpeed = 5f;
+                character.isRunning = true;
             }
             else
             {
                 character.MaxStableMoveSpeed = 2f;
+                character.isRunning = false;
             }
         }
         

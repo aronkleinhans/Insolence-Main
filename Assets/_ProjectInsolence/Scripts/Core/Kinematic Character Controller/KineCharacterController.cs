@@ -1,3 +1,4 @@
+using Insolence.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,6 +44,8 @@ namespace Insolence.KinematicCharacterController
     
     public class KineCharacterController : MonoBehaviour, ICharacterController
     {
+
+        
         public KinematicCharacterMotor Motor;
 
         [Header("Stable Movement")]
@@ -93,6 +96,7 @@ namespace Insolence.KinematicCharacterController
         {
             get { return _isCrouching; }
         }
+        public bool isRunning = false;
 
         private Vector3 lastInnerNormal = Vector3.zero;
         private Vector3 lastOuterNormal = Vector3.zero;
@@ -213,12 +217,21 @@ namespace Insolence.KinematicCharacterController
                         }
                         if (inputs.DashDown)
                         {
-                            MaxStableMoveSpeed = 5.5f;
-                           
+                            if(GetComponent<CharacterStatus>().currentStamina > 0)
+                            {
+                                MaxStableMoveSpeed = 5.5f;
+                                isRunning = true;
+                            }
+                            else
+                            {
+                                MaxStableMoveSpeed = 2f;
+                                isRunning = false;
+                            }
                         }
                         else if (inputs.DashUp)
                         {
                             MaxStableMoveSpeed = 2f;
+                            isRunning = false;
                         }
                         
 

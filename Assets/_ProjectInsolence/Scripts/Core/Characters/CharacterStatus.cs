@@ -4,6 +4,7 @@ using Insolence.SaveUtility;
 using System.Collections.Generic;
 using Insolence.UI;
 using Insolence.AIBrain;
+using Insolence.KinematicCharacterController;
 
 namespace Insolence.Core
 {
@@ -80,6 +81,17 @@ namespace Insolence.Core
                 OnStatValueChanged?.Invoke();
             }
         }
+        //add currentMaxStamina
+        [SerializeField] private int _currentMaxStamina;
+        public int currentMaxStamina
+        {
+            get { return _currentMaxStamina; }
+            set
+            {
+                _currentMaxStamina = value;
+                OnStatValueChanged?.Invoke();
+            }
+        }
         [SerializeField] private int _staminaRegen = 5;
         public int staminaRegen
         {
@@ -90,7 +102,8 @@ namespace Insolence.Core
                 OnStatValueChanged?.Invoke();
             }
         }
-        
+        [SerializeField] private int _runStaminaCost = 5;
+
         [SerializeField] private int _currentStamina;
         public int currentStamina
         {
@@ -161,6 +174,8 @@ namespace Insolence.Core
             }
         }
 
+        bool canRegenerate;
+        
         [SerializeField] private Billboard billboard;
 
         public delegate void StatValueChangedHandler();
@@ -185,8 +200,6 @@ namespace Insolence.Core
 
             inv = GetComponent<Inventory>();
 
-            //call the regenerate stamina function once per second
-            InvokeRepeating("regenerateStamina", 1.0f, 1.0f);
         }
 
         private void Update()
@@ -197,17 +210,67 @@ namespace Insolence.Core
             {
                 currentHealth = maxHealth;
             }
-            if (currentStamina >= maxStamina)
+            if (currentStamina >= currentMaxStamina)
             {
-                currentStamina = maxStamina;
+                currentStamina = currentMaxStamina;
             }
             if (currentMana >= maxMana)
             {
                 currentMana = maxMana;
             }
+            if (currentMaxStamina >= maxStamina)
+            {
+                currentMaxStamina = maxStamina;
+            }
+
+            if (currentHealth <= 0)
+            {
+                currentHealth = 0;
+            }
+            if (currentStamina <= 0)
+            {
+                currentStamina = 0;
+            }
+            if (currentMana <= 0)
+            {
+                currentMana = 0;
+            }
+            if (currentMaxStamina <= 0)
+            {
+                currentMaxStamina = 0;
+            }
+            
 
             UpdateWeaponDamage();
             SetObjectName();
+
+            //call regenerateStamina() if stamina is less than current max stamina every 30 frames
+            if (currentStamina < currentMaxStamina && !GetComponent<KineCharacterController>().isRunning && Time.frameCount % 30 == 0)
+            {
+                regenerateStamina();
+            }
+
+
+            //call RunConsumeStamina() if KineCharacterController.isRunning is true every 30 frames
+            if (GetComponent<KineCharacterController>().isRunning && Time.frameCount % 30 == 0)
+            {
+                ConsumeStamina(_runStaminaCost);
+            }
+
+            //stop regen if stamina == 0, until stamina is greater than 20% of max stamina
+            if (currentStamina <= 0 && canRegenerate)
+            {
+                canRegenerate = false;
+            }
+            else if (currentStamina <= maxStamina * 0.2f && !canRegenerate)
+            {
+                canRegenerate = false;
+            }
+            else
+            {
+                canRegenerate = true;
+            }
+
         }
 
         private void regenerateStamina()
@@ -216,6 +279,11 @@ namespace Insolence.Core
             {
                 currentStamina += staminaRegen;
             }
+        }
+
+        private void ConsumeStamina(int amount)
+        {
+            currentStamina -= amount;
         }
         public Dictionary<string, string> GetStatus()
         {
@@ -299,6 +367,7 @@ namespace Insolence.Core
             }
             
         }
+
 
         #region Inventory Save/Load
         private void PrepareToSaveObjectState(ObjectState objectState)

@@ -12,7 +12,7 @@ namespace Insolence.AIBrain.Considerations
         public override float ScoreConsideration(NPCAIController npc)
         {
             //logic to score energy(stamina)
-            return score = responseCurve.Evaluate(Mathf.Clamp01(npc.status.currentStamina / npc.status.maxStamina));
+            return score = responseCurve.Evaluate(Mathf.Clamp01(npc.status.currentMaxStamina / npc.status.maxStamina));
         }
     }
 }

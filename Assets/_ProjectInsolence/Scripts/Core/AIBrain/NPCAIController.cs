@@ -265,11 +265,15 @@ namespace Insolence.AIBrain
             if (hunger < 100)
             {
                 GetComponent<CharacterStatus>().hunger += 5;
+                
             }
             else
             {
-                GetComponent<CharacterStatus>().maxHealth -= 100;
+                GetComponent<CharacterStatus>().maxHealth -= 50;
             }
+
+            GetComponent<CharacterStatus>().currentMaxStamina -= 5;
+
             Resource res = destination.GetComponent<Resource>();
             if (res != null)
             {
@@ -293,6 +297,8 @@ namespace Insolence.AIBrain
                 counter--;
             }
             //logic to update max stamina
+            GetComponent<CharacterStatus>().currentMaxStamina += 50;
+
             OnFinishedAction();
         }
         private IEnumerator EatCoroutine(int time)

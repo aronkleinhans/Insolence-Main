@@ -69842,13 +69842,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gold: 0
+  _goldNeededPerDay: 100
   _level: 0
   _experience: 0
   _maxHealth: 0
   _currentHealth: 0
-  _maxStamina: 0
+  _maxStamina: 100
+  _currentMaxStamina: 100
   _staminaRegen: 5
-  _currentStamina: 0
+  _runStaminaCost: 5
+  _currentStamina: 100
   _hunger: 0
   _maxHunger: 100
   _maxMana: 0
@@ -69964,6 +69967,7 @@ MonoBehaviour:
   CameraFollowPoint: {fileID: 1047127453118910406}
   CrouchedCapsuleHeight: 1
   OrientTowardsGravity: 1
+  isRunning: 0
 --- !u!114 &7810348958394456860
 MonoBehaviour:
   m_ObjectHideFlags: 0
