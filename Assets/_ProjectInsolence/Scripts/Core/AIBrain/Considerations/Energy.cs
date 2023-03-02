@@ -8,11 +8,11 @@ namespace Insolence.AIBrain.Considerations
     [CreateAssetMenu(fileName = "Energy", menuName = "Insolence/AIBrain/Considerations/Energy")]
     public class Energy : Consideration
     {
+        [SerializeField] private AnimationCurve responseCurve;
         public override float ScoreConsideration(NPCAIController npc)
         {
             //logic to score energy(stamina)
-            score = 0.1f;
-            return score;
+            return score = responseCurve.Evaluate(Mathf.Clamp01(npc.status.currentStamina / npc.status.maxStamina));
         }
     }
 }

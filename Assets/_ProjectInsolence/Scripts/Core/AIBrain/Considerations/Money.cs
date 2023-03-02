@@ -7,11 +7,11 @@ namespace Insolence.AIBrain.Considerations
     [CreateAssetMenu(fileName = "Money", menuName = "Insolence/AIBrain/Considerations/Money")]
     public class Money : Consideration
     {
-        [SerializeField] AnimationCurve moneyCurve;
+        [SerializeField] AnimationCurve responseCurve;
         public override float ScoreConsideration(NPCAIController npc)
         {
             //logic to score money
-            return score = 0.9f;
+            return score = responseCurve.Evaluate(Mathf.Clamp01(npc.status.gold / npc.status.goldNeededPerDay));
         }
     }
 }

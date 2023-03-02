@@ -20,6 +20,16 @@ namespace Insolence.Core
                 OnStatValueChanged?.Invoke();
             }
         }
+        [SerializeField] private int _goldNeededPerDay = 100;
+        public int goldNeededPerDay
+        {
+            get { return _goldNeededPerDay; }
+            set
+            {
+                _goldNeededPerDay = value;
+                OnStatValueChanged?.Invoke();
+            }
+        }
         [SerializeField] private int _level;
         public int level
         {

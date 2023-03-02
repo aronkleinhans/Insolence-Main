@@ -20,9 +20,9 @@ RenderSettings:
   m_FogDensity: 0.0001
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.0987738, g: 0.011772081, b: 0.12467622, a: 0}
-  m_AmbientEquatorColor: {r: 0.08623516, g: 0.05290109, b: 0.08623516, a: 0}
-  m_AmbientGroundColor: {r: 0.10415235, g: 0.08862452, b: 0.102337405, a: 0}
+  m_AmbientSkyColor: {r: 0.06858324, g: 0.10053696, b: 0.24058461, a: 0}
+  m_AmbientEquatorColor: {r: 0.4900561, g: 0.60030466, b: 0.6845487, a: 0.03513504}
+  m_AmbientGroundColor: {r: 0.05658709, g: 0.045548152, b: 0.04028635, a: 0}
   m_AmbientIntensity: 1.4
   m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
@@ -484,7 +484,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199741784}
-  m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.33873814, w: -0.9408807}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -512,12 +512,12 @@ MonoBehaviour:
   automaticColorAndBrightness: 1
   peakIntensity: 0.1
   lightingColorMask: {r: 0.29613832, g: 0.4125427, b: 0.63075733, a: 1}
-  positionRelative: {x: 0, y: 5, z: 0}
+  positionRelative: {x: -3.1871219, y: -3.8525648, z: 0}
   sortOrder: 5
   orbitOffset: 180
   inclinationOffset: 0
   positionIsStatic: 0
-  direction: {x: 0, y: 1, z: 0}
+  direction: {x: -0.63742435, y: -0.77051294, z: 0}
   falloff: 1
   handleColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &201538554
@@ -1916,7 +1916,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 492087455}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0.7071068, w: 0}
+  m_LocalRotation: {x: -0.000000014901163, y: -0.7071068, z: -0.7071068, w: -0.000000014901163}
   m_LocalPosition: {x: 0, y: -5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1956,7 +1956,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.29613832, g: 0.4125427, b: 0.63075733, a: 1}
-  m_Intensity: 0.1
+  m_Intensity: 0
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1999,7 +1999,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 5500
+  m_ColorTemperature: 2000
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -2415,7 +2415,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 740326433}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.9408807, w: 0.33873805}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2443,12 +2443,12 @@ MonoBehaviour:
   automaticColorAndBrightness: 1
   peakIntensity: 3
   lightingColorMask: {r: 1, g: 1, b: 1, a: 1}
-  positionRelative: {x: 0, y: -5, z: 0}
+  positionRelative: {x: 3.1871212, y: 3.8525658, z: 0}
   sortOrder: 5
   orbitOffset: 0
   inclinationOffset: 0
   positionIsStatic: 0
-  direction: {x: 0, y: -1, z: 0}
+  direction: {x: 0.6374242, y: 0.77051306, z: 0}
   falloff: 1
   handleColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &750973751
@@ -2458,6 +2458,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 273900447}
     m_Modifications:
+    - target: {fileID: 3845214871083919067, guid: 2f85b507167e2a64db86f92eb4d9b016, type: 3}
+      propertyPath: _level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3845214871083919067, guid: 2f85b507167e2a64db86f92eb4d9b016, type: 3}
+      propertyPath: _maxStamina
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3845214871083919067, guid: 2f85b507167e2a64db86f92eb4d9b016, type: 3}
+      propertyPath: _currentStamina
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3845214871083919067, guid: 2f85b507167e2a64db86f92eb4d9b016, type: 3}
+      propertyPath: _goldNeededPerDay
+      value: 100000
+      objectReference: {fileID: 0}
     - target: {fileID: 4506185157182159678, guid: 2f85b507167e2a64db86f92eb4d9b016, type: 3}
       propertyPath: hungerRate
       value: 0.1
@@ -2655,7 +2671,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 893528493}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: 0.7071068, w: 0}
+  m_LocalRotation: {x: 0.000000014901163, y: -0.7071068, z: -0.70710677, w: -0.000000014901163}
   m_LocalPosition: {x: 0, y: -5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2695,7 +2711,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0
+  m_Intensity: 3
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2738,7 +2754,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 2000
+  m_ColorTemperature: 5500
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -2804,6 +2820,18 @@ PrefabInstance:
     - target: {fileID: 2212027417654290943, guid: 6c84cb3484aea9f448ef9248b7ee7cd4, type: 3}
       propertyPath: m_Name
       value: Woodcutter Jeb
+      objectReference: {fileID: 0}
+    - target: {fileID: 5984151402589312073, guid: 6c84cb3484aea9f448ef9248b7ee7cd4, type: 3}
+      propertyPath: _maxStamina
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5984151402589312073, guid: 6c84cb3484aea9f448ef9248b7ee7cd4, type: 3}
+      propertyPath: _currentStamina
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5984151402589312073, guid: 6c84cb3484aea9f448ef9248b7ee7cd4, type: 3}
+      propertyPath: _goldNeededPerDay
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 6403596355734243756, guid: 6c84cb3484aea9f448ef9248b7ee7cd4, type: 3}
       propertyPath: hungerRate

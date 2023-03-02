@@ -9,7 +9,7 @@ namespace Insolence.AIBrain.Considerations
     {
         public override float ScoreConsideration(NPCAIController npc)
         {
-            return score = npc.job == NPCAIController.JobType.Merchant ? 1 : 0;
+            return score = npc.job == NPCAIController.JobType.Merchant ? 0.9f : 0;
         }
     }
 }

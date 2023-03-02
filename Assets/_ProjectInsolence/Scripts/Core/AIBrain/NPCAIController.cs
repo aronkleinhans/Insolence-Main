@@ -31,6 +31,7 @@ namespace Insolence.AIBrain
         public bool hasArrived = false;
         public bool isWorking = false;
         public bool isInteracting = false;
+        public bool isTalking = false;
 
         [Header("Travel Stats")]
 
@@ -106,28 +107,15 @@ namespace Insolence.AIBrain
                     }
                 }
             }
+            
             hungerGainOnArrival = travelDistance * hungerRate;
-
-            //if destination changes update navmesh agent
-            if (destination != null && destination.transform.position != mover.GetDestination() && enRoute)
+            
+            if(neededFood < 0)
             {
-                mover.MoveTo(destination.transform.position);
+                neededFood = 0;
             }
-            //set enRout and hasArrived to false if destination changes to null mid-action
-            if (destination == null)
-            {
-                enRoute = false;
-                hasArrived = false;
-                mover.Stop();
-            }
-            else
-            {
-                hasArrived = mover.AtDestination();
-            }
-
-            //merchants get free food if they carry any
-
-            if (job == JobType.Merchant )
+            //check if npc is a merchant and has food for sale if yes can eat food for sale and remove it from shop inventory(paying for it still)
+            if (job == JobType.Merchant)
             {
                 List<Item> inventoryFood = new List<Item>();
                 inventoryFood.Clear();
@@ -149,17 +137,40 @@ namespace Insolence.AIBrain
 
                     if (shopFood.Count != 0)
                     {
+                        ownedFood += shopFood[0].hungerRestore;
                         inventory.AddItem(shopFood[0]);
+                        status.gold -= shopFood[0].value;
+                        shopFood.Remove(shopFood[0]);
                     }
                 }
-
-                
             }
+            
+            //if destination changes update navmesh agent
+            if (destination != null && destination.transform.position != mover.GetDestination() && enRoute)
+            {
+                mover.MoveTo(destination.transform.position);
+            }
+            //set enRout and hasArrived to false if destination changes to null mid-action
+            if (destination == null)
+            {
+                enRoute = false;
+                hasArrived = false;
+                mover.Stop();
+            }
+            else
+            {
+                hasArrived = mover.AtDestination();
+                if (hasArrived)
+                {
+                    hungerGainOnArrival = 0;
+                }
+            }
+
         }
         public void OnFinishedAction()
         {
-            brain.ChooseBestAction(availableActions);
             StopAllCoroutines();
+            brain.ChooseBestAction(availableActions);
         }
 
         public GameObject GetInteractable()
@@ -237,6 +248,7 @@ namespace Insolence.AIBrain
 
         #region Coroutines
 
+
         private IEnumerator WorkCoroutine(int time)
         {
             int counter = time;
@@ -291,6 +303,7 @@ namespace Insolence.AIBrain
                 yield return new WaitForSeconds(1);
                 counter--;
             }
+
             //check if npc has food in its inventory, if yes remove food from inventory and reduce hunger by food.hungerRestore
             List<Item> itemList = inventory.CreateItemList();
             foreach (Item item in itemList)
@@ -302,20 +315,7 @@ namespace Insolence.AIBrain
                     inventory.RemoveItem(item);
                 }
             }
-            //if npc is merchant check shop inventory too
-            if (job == JobType.Merchant)
-            {
-                List<Item> shopItemList = shopInventory.CreateItemList();
-                foreach (Item item in shopItemList)
-                {
-                    if (item != null && item.consumableType == ItemEnums.ConsumableType.Food && status.hunger > 0)
-                    {
-                        
-                        status.hunger -= item.hungerRestore;
-                        shopInventory.RemoveItem(item);
-                    }
-                }
-            }
+
             OnFinishedAction();
         }
         private IEnumerator InteractCoroutine()
@@ -508,24 +508,20 @@ namespace Insolence.AIBrain
 
                 food = foodList.ToList();
 
-                if (job == JobType.Merchant && food.Count != 0)
+                if (food.Count > 0 )
                 {
-                    inventory.AddItem(food[0]);
-                }
-                else if (food.Count > 0 )
-                {
-                    Debug.Log("food count in shop: " + food.Count);
+
                     foreach(Item item in food)
                     {
-                        Debug.Log("checking item: " + item.name);
-                        if (GetComponent<CharacterStatus>().gold >= item.value && neededFood > ownedFood)
+
+                        if (GetComponent<CharacterStatus>().gold >= item.value && (neededFood > ownedFood || ownedFood == 0))
                         {
-                            Debug.Log("can afford item");
+
                             GetComponent<CharacterStatus>().gold -= item.value;
                             destination.GetComponent<CharacterStatus>().gold += item.value;
 
                             ownedFood += item.hungerRestore;
-                            Debug.Log("Bought food");
+
                             inv.AddItem(item);
                             destination.GetComponent<ShopInventory>().RemoveItem(item);
                         }
