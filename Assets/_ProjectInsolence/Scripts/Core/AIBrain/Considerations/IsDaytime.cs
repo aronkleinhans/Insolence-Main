@@ -13,6 +13,7 @@ namespace Insolence.AIBrain.Considerations
             TimeManager tm = GameObject.Find("TimeManager").GetComponent<TimeManager>();
             score = (tm.GetTimeOfDay() >= 6 && tm.GetTimeOfDay() <= 18) ? 1 : 0f;
             return score;
+            
         }
     }
 }
