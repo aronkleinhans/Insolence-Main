@@ -500,6 +500,7 @@ namespace Insolence.AIBrain
             if (hunger < 100)
             {
                 GetComponent<CharacterStatus>().hunger += 1;
+                GetComponent<CharacterStatus>().currentMaxStamina -= 1;
             }
             else
             {
