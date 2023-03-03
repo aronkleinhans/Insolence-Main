@@ -232,6 +232,10 @@ namespace Insolence.AIBrain
         {
             StartCoroutine(SetTradeInterestCoroutine());
         }
+        public void SetSleepInterest()
+        {
+            StartCoroutine(SetSleepInterestCoroutine());
+        }
         public void DoSellMisc()
         {
             StartCoroutine(SellMiscCoroutine());
@@ -446,6 +450,16 @@ namespace Insolence.AIBrain
             interest.UpdateWorkType(this);
             ClearDestAndArrived();
             
+            yield return null;
+            OnFinishedAction();
+        }
+
+        IEnumerator SetSleepInterestCoroutine()
+        {
+            interest.interestType = InterestType.Sleep;
+            interest.UpdateWorkType(this);
+            ClearDestAndArrived();
+
             yield return null;
             OnFinishedAction();
         }

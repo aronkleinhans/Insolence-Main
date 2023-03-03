@@ -478,6 +478,7 @@ MonoBehaviour:
   CameraFollowPoint: {fileID: 0}
   CrouchedCapsuleHeight: 1
   OrientTowardsGravity: 1
+  isRunning: 0
 --- !u!114 &6340209619544942767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -549,12 +550,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gold: 500
+  _goldNeededPerDay: 100
   _level: 0
   _experience: 0
   _maxHealth: 100
   _currentHealth: 100
   _maxStamina: 0
+  _currentMaxStamina: 0
   _staminaRegen: 5
+  _runStaminaCost: 5
   _currentStamina: 0
   _hunger: 0
   _maxHunger: 100
@@ -562,6 +566,7 @@ MonoBehaviour:
   _currentMana: 0
   _name: Jill
   _weaponDamage: 0
+  canRun: 1
   billboard: {fileID: 8613591660137629137}
   database: {fileID: 11400000, guid: b79921a00f01ccb40bab2aad260eaeb1, type: 2}
   inv: {fileID: 0}
@@ -593,6 +598,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 95a2838cd8ffb244b8b60129bc1df936, type: 2}
   - {fileID: 11400000, guid: d1b4f4a6f566ae246a224342bd3c9b52, type: 2}
   - {fileID: 11400000, guid: 5ddf101ba5e5253419ba0b2bf46d55ff, type: 2}
+  - {fileID: 11400000, guid: 7ba7330db4a68524ab9b3a465c4f2a16, type: 2}
   targetInteractable: {fileID: 0}
   interest:
     interestType: 0
@@ -602,6 +608,7 @@ MonoBehaviour:
   hasArrived: 0
   isWorking: 0
   isInteracting: 0
+  isTalking: 0
   travelDistance: 0
   hungerRate: 0.1
   hungerGainOnArrival: 0
