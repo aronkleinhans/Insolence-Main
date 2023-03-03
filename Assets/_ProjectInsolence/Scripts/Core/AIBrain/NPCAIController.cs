@@ -301,7 +301,7 @@ namespace Insolence.AIBrain
                 counter--;
             }
             //logic to update max stamina
-            GetComponent<CharacterStatus>().currentMaxStamina += 50;
+            GetComponent<CharacterStatus>().currentMaxStamina += 10;
 
             OnFinishedAction();
         }

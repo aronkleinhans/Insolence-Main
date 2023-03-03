@@ -315,7 +315,7 @@ MonoBehaviour:
   _maxHealth: 150
   _currentHealth: 100
   _maxStamina: 0
-  _currentMaxStamina: 0
+  _currentMaxStamina: 100
   _staminaRegen: 5
   _runStaminaCost: 5
   _currentStamina: 0
