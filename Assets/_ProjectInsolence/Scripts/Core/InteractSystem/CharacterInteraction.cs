@@ -19,6 +19,9 @@ namespace Insolence.Core
         [SerializeField] int currentInteractableIndex = 0;
         [SerializeField] int nextInteractableIndex = 0;
 
+        [SerializeField] NPCVision npcVision;
+        [SerializeField] float interactRange = 1;
+
         private void OnEnable()
         {
             _inputReader.InteractEvent += OnInteraction;
@@ -34,10 +37,71 @@ namespace Insolence.Core
             uiControl = GameObject.Find("InGameUI").GetComponent<InGameUIController>();
             _inputReader = GameObject.Find("GameManager").GetComponent<GameManager>().inputReader;
             headTracking = GetComponentInChildren<HeadTracking>();
+            npcVision = GetComponent<NPCVision>();
         }
         private void Update()
         {
+            CollectInteractables();
             HandleInteraction();
+        }
+        private void CollectInteractables()
+        {
+            //use npcvision to get interactables in range (handle like ontriggerstay) (use add)
+            if (npcVision != null)
+            {
+                foreach (GameObject target in npcVision.visibleTargets)
+                {
+                    if (target.GetComponent<Interactable>() != null)
+                    {
+                        if (!interactablesInRange.Contains(target.GetComponent<Interactable>()) && Vector3.Distance(transform.position, target.transform.position) <= interactRange)
+                        {
+                            interactablesInRange.Add(target.GetComponent<Interactable>());
+                        }
+                        if (target.GetComponent<InteractBackstab>() != null && GetComponent<KineCharacterController>().isCrouching)
+                        {
+                            if (!interactablesInRange.Contains(target.GetComponent<Interactable>()) && Vector3.Distance(transform.position, target.transform.position) <= interactRange)
+                            {
+                                interactablesInRange.Add(target.GetComponent<Interactable>());
+                            }
+                        }
+                    }
+                }
+                //remove interactables that are no longer in range
+                for (int i = 0; i < interactablesInRange.Count; i++)
+                {
+                    if (interactablesInRange[i] != null)
+                    {
+                        if (Vector3.Distance(transform.position, interactablesInRange[i].transform.position) > interactRange)
+                        {
+                            interactablesInRange.Remove(interactablesInRange[i]);
+                        }
+                    }
+                }
+                //remove interactables no longer in sight
+                for (int i = 0; i < interactablesInRange.Count; i++)
+                {
+                    if (interactablesInRange[i] != null)
+                    {
+                        if (!npcVision.visibleTargets.Contains(interactablesInRange[i].gameObject))
+                        {
+                            interactablesInRange.Remove(interactablesInRange[i]);
+                        }
+                    }
+                }
+                //remove backstab interactables if not crouching
+                for (int i = 0; i < interactablesInRange.Count; i++)
+                {
+                    if (interactablesInRange[i] != null)
+                    {
+                        if (interactablesInRange[i].GetComponent<InteractBackstab>() != null && !GetComponent<KineCharacterController>().isCrouching)
+                        {
+                            interactablesInRange.Remove(interactablesInRange[i]);
+                        }
+                    }
+                }
+                //clean list of null items
+                interactablesInRange.RemoveAll(item => item == null);
+            }
         }
         private void HandleInteraction()
         {
@@ -110,54 +174,54 @@ namespace Insolence.Core
             }
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.gameObject.GetComponent<Interactable>() != null && !interactablesInRange.Contains(other.gameObject.GetComponent<Interactable>()) && other.gameObject.GetComponent<InteractBackstab>() == null)
-            {
-                interactablesInRange.Add(other.gameObject.GetComponent<Interactable>());
-            }
-            if (other.gameObject.GetComponent<InteractBackstab>() != null && GetComponent<KineCharacterController>().isCrouching)
-            {
-                interactablesInRange.Add(other.gameObject.GetComponent<Interactable>());
-            }
-        }
+        //private void OnTriggerEnter(Collider other)
+        //{
+        //    if (other.gameObject.GetComponent<Interactable>() != null && !interactablesInRange.Contains(other.gameObject.GetComponent<Interactable>()) && other.gameObject.GetComponent<InteractBackstab>() == null)
+        //    {
+        //        interactablesInRange.Add(other.gameObject.GetComponent<Interactable>());
+        //    }
+        //    if (other.gameObject.GetComponent<InteractBackstab>() != null && GetComponent<KineCharacterController>().isCrouching)
+        //    {
+        //        interactablesInRange.Add(other.gameObject.GetComponent<Interactable>());
+        //    }
+        //}
 
-        private void OnTriggerStay(Collider other)
-        {
-            bool wasCrouching = GetComponent<KineCharacterController>().isCrouching;
+        //private void OnTriggerStay(Collider other)
+        //{
+        //    bool wasCrouching = GetComponent<KineCharacterController>().isCrouching;
 
-            if (other.gameObject.GetComponent<Interactable>() != null)
-            {
-                if (!interactablesInRange.Contains(other.gameObject.GetComponent<Interactable>()))
-                {
-                    interactablesInRange.Add(other.gameObject.GetComponent<Interactable>());
-                }
-            }
+        //    if (other.gameObject.GetComponent<Interactable>() != null)
+        //    {
+        //        if (!interactablesInRange.Contains(other.gameObject.GetComponent<Interactable>()))
+        //        {
+        //            interactablesInRange.Add(other.gameObject.GetComponent<Interactable>());
+        //        }
+        //    }
 
-            if (other.gameObject.GetComponent<InteractBackstab>() != null)
-            {
-                if (GetComponent<KineCharacterController>().isCrouching)
-                {
-                    if (!interactablesInRange.Contains(other.gameObject.GetComponent<Interactable>()))
-                    {
-                        interactablesInRange.Add(other.gameObject.GetComponent<Interactable>());
-                    }
-                }
-                else
-                {
-                    interactablesInRange.Remove(other.gameObject.GetComponent<Interactable>());
-                }
-            }
+        //    if (other.gameObject.GetComponent<InteractBackstab>() != null)
+        //    {
+        //        if (GetComponent<KineCharacterController>().isCrouching)
+        //        {
+        //            if (!interactablesInRange.Contains(other.gameObject.GetComponent<Interactable>()))
+        //            {
+        //                interactablesInRange.Add(other.gameObject.GetComponent<Interactable>());
+        //            }
+        //        }
+        //        else
+        //        {
+        //            interactablesInRange.Remove(other.gameObject.GetComponent<Interactable>());
+        //        }
+        //    }
 
-        }
+        //}
 
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.gameObject.GetComponent<Interactable>() != null && interactablesInRange.Contains(other.gameObject.GetComponent<Interactable>()))
-            {
-                interactablesInRange.Remove(other.gameObject.GetComponent<Interactable>());
-            }
-        }
+        //private void OnTriggerExit(Collider other)
+        //{
+        //    if (other.gameObject.GetComponent<Interactable>() != null && interactablesInRange.Contains(other.gameObject.GetComponent<Interactable>()))
+        //    {
+        //        interactablesInRange.Remove(other.gameObject.GetComponent<Interactable>());
+        //    }
+        //}
 
         private void OnCycleInteractables()
         {

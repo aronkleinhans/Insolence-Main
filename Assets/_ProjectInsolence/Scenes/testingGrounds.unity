@@ -109,7 +109,7 @@ NavMeshSettings:
     agentRadius: 0.3
     agentHeight: 2
     agentSlope: 60
-    agentClimb: 1
+    agentClimb: 0.8
     ledgeDropHeight: 1.5
     maxJumpAcrossDistance: 0
     minRegionArea: 1
@@ -404,6 +404,10 @@ PrefabInstance:
     - target: {fileID: 986932269985855856, guid: 834a81f38ed715e4d91ebbcfaf34276d, type: 3}
       propertyPath: m_Name
       value: Interactable_SM_Wep_Hammer_05
+      objectReference: {fileID: 0}
+    - target: {fileID: 986932269985855856, guid: 834a81f38ed715e4d91ebbcfaf34276d, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 988653491113192926, guid: 834a81f38ed715e4d91ebbcfaf34276d, type: 3}
       propertyPath: m_RootOrder
@@ -1723,6 +1727,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
+  isPublic: 0
   interests: []
 --- !u!1001 &372739663
 PrefabInstance:
@@ -1878,6 +1883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 750973752}
+  isPublic: 0
   interests:
   - {fileID: 305586440}
 --- !u!1001 &470766715
@@ -2266,7 +2272,7 @@ GameObject:
   m_Component:
   - component: {fileID: 605117336}
   - component: {fileID: 605117337}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: stack-push
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2538,6 +2544,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 273900447}
     m_Modifications:
+    - target: {fileID: 1485533739427662765, guid: 2f85b507167e2a64db86f92eb4d9b016, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3845214871083919067, guid: 2f85b507167e2a64db86f92eb4d9b016, type: 3}
       propertyPath: _level
       value: 1
@@ -2554,6 +2564,10 @@ PrefabInstance:
       propertyPath: _goldNeededPerDay
       value: 100000
       objectReference: {fileID: 0}
+    - target: {fileID: 4463791879820621661, guid: 2f85b507167e2a64db86f92eb4d9b016, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4506185157182159678, guid: 2f85b507167e2a64db86f92eb4d9b016, type: 3}
       propertyPath: home
       value: 
@@ -2561,6 +2575,10 @@ PrefabInstance:
     - target: {fileID: 4506185157182159678, guid: 2f85b507167e2a64db86f92eb4d9b016, type: 3}
       propertyPath: hungerRate
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5646243365772127012, guid: 2f85b507167e2a64db86f92eb4d9b016, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8513607937740069157, guid: 2f85b507167e2a64db86f92eb4d9b016, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2629,6 +2647,10 @@ PrefabInstance:
     - target: {fileID: 8711571659834334061, guid: 2f85b507167e2a64db86f92eb4d9b016, type: 3}
       propertyPath: m_Name
       value: Trader Jill
+      objectReference: {fileID: 0}
+    - target: {fileID: 9070473947031488293, guid: 2f85b507167e2a64db86f92eb4d9b016, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f85b507167e2a64db86f92eb4d9b016, type: 3}
@@ -2862,6 +2884,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 273900447}
     m_Modifications:
+    - target: {fileID: 1415738140528166806, guid: 6c84cb3484aea9f448ef9248b7ee7cd4, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2212027417654290942, guid: 6c84cb3484aea9f448ef9248b7ee7cd4, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2925,6 +2951,18 @@ PrefabInstance:
     - target: {fileID: 6403596355734243756, guid: 6c84cb3484aea9f448ef9248b7ee7cd4, type: 3}
       propertyPath: hungerRate
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7018030137423305294, guid: 6c84cb3484aea9f448ef9248b7ee7cd4, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644579662907984839, guid: 6c84cb3484aea9f448ef9248b7ee7cd4, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8271606610238765375, guid: 6c84cb3484aea9f448ef9248b7ee7cd4, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c84cb3484aea9f448ef9248b7ee7cd4, type: 3}
@@ -3394,7 +3432,7 @@ GameObject:
   - component: {fileID: 1458344608}
   - component: {fileID: 1458344609}
   - component: {fileID: 1458344610}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Items
   m_TagString: NPCPOI
   m_Icon: {fileID: 0}
@@ -3456,6 +3494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
+  isPublic: 0
   interests: []
 --- !u!1 &1459047543
 GameObject:
@@ -4385,6 +4424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
+  isPublic: 0
   interests: []
 --- !u!1 &1960850233
 GameObject:
@@ -4672,6 +4712,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interactable_SM_Wep_Dagger_01
       objectReference: {fileID: 0}
+    - target: {fileID: 2534255294755480569, guid: 36d129551521b9b4cac784b6dced0bbe, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36d129551521b9b4cac784b6dced0bbe, type: 3}
 --- !u!4 &554358110373856885 stripped
@@ -4883,6 +4927,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interactable_SM_Chr_Mage_Cape_01
       objectReference: {fileID: 0}
+    - target: {fileID: 7602018611961694130, guid: 2c9456278a7021d4d81edd9bd911c68c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c9456278a7021d4d81edd9bd911c68c, type: 3}
 --- !u!4 &1931755148030664125 stripped
@@ -4931,6 +4979,10 @@ PrefabInstance:
     - target: {fileID: 2878103629857368186, guid: 65ecd528785c7ef409159c7cc38bd81e, type: 3}
       propertyPath: m_Name
       value: NPCs
+      objectReference: {fileID: 0}
+    - target: {fileID: 2878103629857368186, guid: 65ecd528785c7ef409159c7cc38bd81e, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2878103629857368187, guid: 65ecd528785c7ef409159c7cc38bd81e, type: 3}
       propertyPath: m_RootOrder
@@ -5041,6 +5093,10 @@ PrefabInstance:
     - target: {fileID: 175296239098118273, guid: 19c3bf7559226c34fba4e461e5f97cdf, type: 3}
       propertyPath: m_Name
       value: Interactable_SM_Item_Wood_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 175296239098118273, guid: 19c3bf7559226c34fba4e461e5f97cdf, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19c3bf7559226c34fba4e461e5f97cdf, type: 3}

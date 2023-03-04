@@ -369,13 +369,10 @@ namespace Insolence.AIBrain
 
             List<NPCPointOfInterest> poiList = new List<NPCPointOfInterest>();
 
-            if (home != null && home.HasNeededInterest(interest))
-            {
-                poiList.Add(home);
-            }
+
 
             var pois = from poi in FindObjectsOfType<NPCPointOfInterest>()
-                       where poi != null && poi.GetComponent<NPCPointOfInterest>().HasNeededInterest(interest) && poi.GetComponent<NPCPointOfInterest>().owner == null
+                       where poi != null && poi.GetComponent<NPCPointOfInterest>().HasNeededInterest(interest) && (poi.GetComponent<NPCPointOfInterest>().owner == null || poi.GetComponent<NPCPointOfInterest>().isPublic)
                        select poi;
 
             if (interest.interestType == InterestType.Work)
@@ -390,31 +387,53 @@ namespace Insolence.AIBrain
             
             Interest closestPOI = null;
             float closestDistance = Mathf.Infinity;
-            foreach (var poi in poiList)
+
+            //first check if NPC has a home and if it has the required interest
+            if (home != null && home.HasNeededInterest(interest))
             {
-                if(poi != null)
+                foreach (Interest i in home.GetComponent<NPCPointOfInterest>().interests)
                 {
-                    foreach (Interest i in poi.GetComponent<NPCPointOfInterest>().interests)
+                    if (i != null)
                     {
-                        if (i != null)
+                        float dist = Vector3.Distance(transform.position, i.transform.position);
+                        if (dist < closestDistance)
                         {
-                            float distance = Vector3.Distance(transform.position, i.transform.position);
-                            if (distance < closestDistance)
+                            closestDistance = dist;
+                            closestPOI = i;
+                        }
+                    }
+                }
+            }
+            //else look for closest other interest
+            else
+            {
+                foreach (var poi in poiList)
+                {
+                    if (poi != null)
+                    {
+                        foreach (Interest i in poi.GetComponent<NPCPointOfInterest>().interests)
+                        {
+                            if (i != null)
                             {
-                                closestDistance = distance;
-                                closestPOI = i;
+                                float distance = Vector3.Distance(transform.position, i.transform.position);
+                                if (distance < closestDistance)
+                                {
+                                    closestDistance = distance;
+                                    closestPOI = i;
+                                }
+
                             }
                         }
                     }
                 }
-
             }
             if (closestPOI == null)
             {
+
             }
             else
             {
-                if(neededFood == 0)
+                if (neededFood == 0)
                 {
                     neededFood = closestDistance * hungerRate * 2;
                 }
@@ -427,8 +446,8 @@ namespace Insolence.AIBrain
                 travelDistance = Vector3.Distance(transform.position, destination.transform.position);
             }
             yield return null;
-            OnFinishedAction();
-        }
+                OnFinishedAction();
+            }
 
         IEnumerator SetInterestCoroutine(InterestType interestType)
         {

@@ -23620,6 +23620,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &5611953053438543875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69755,13 +69756,13 @@ GameObject:
   - component: {fileID: 1413339671303046317}
   - component: {fileID: 2940894369610694278}
   - component: {fileID: 357969225669813762}
-  - component: {fileID: 7718986746130106644}
   - component: {fileID: 2007446791842966017}
   - component: {fileID: 7810348958394456860}
   - component: {fileID: 6287255448973410207}
   - component: {fileID: 3021744286382210730}
   - component: {fileID: 3440374817938687188}
   - component: {fileID: 2411102882829202264}
+  - component: {fileID: 5432733890745308165}
   m_Layer: 6
   m_Name: Protagonist
   m_TagString: Player
@@ -69858,6 +69859,7 @@ MonoBehaviour:
   _currentMana: 0
   _name: Brambles
   _weaponDamage: 0
+  canRun: 1
   billboard: {fileID: 0}
   database: {fileID: 11400000, guid: b79921a00f01ccb40bab2aad260eaeb1, type: 2}
   inv: {fileID: 0}
@@ -69905,6 +69907,8 @@ MonoBehaviour:
   nextInteractable: {fileID: 0}
   currentInteractableIndex: 0
   nextInteractableIndex: 0
+  npcVision: {fileID: 0}
+  interactRange: 2
 --- !u!136 &357969225669813762
 CapsuleCollider:
   m_ObjectHideFlags: 8
@@ -69919,19 +69923,6 @@ CapsuleCollider:
   m_Height: 1.97
   m_Direction: 1
   m_Center: {x: 0, y: 1.03, z: 0}
---- !u!65 &7718986746130106644
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4398432857141671963}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1.97, z: 0.4}
-  m_Center: {x: 0, y: 1.03, z: 0.6}
 --- !u!114 &2007446791842966017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70079,6 +70070,31 @@ MonoBehaviour:
   _target: {fileID: 0}
   cameraFollowPoint: {fileID: 7895874683606284381}
   headTrackingSpeed: 5
+--- !u!114 &5432733890745308165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4398432857141671963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00de28b71767b5e41bec4756b5ab02e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heightOffset: 0.3
+  fovAngle: 90
+  sightDistance: 10
+  hearingRadius: 5
+  headTracking: {fileID: 0}
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 64
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 73
+  visibleTargets: []
+  audibleTargets: []
 --- !u!1 &6704288842790814509
 GameObject:
   m_ObjectHideFlags: 0
