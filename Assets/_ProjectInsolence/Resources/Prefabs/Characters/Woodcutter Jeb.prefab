@@ -351,12 +351,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1d6edf40f298c3342a17a1cc931f559b, type: 2}
   - {fileID: 11400000, guid: ccb5c484a5d7deb46ae36022c874b39f, type: 2}
   - {fileID: 11400000, guid: 8e1009d5378ae0142be101579eeb243a, type: 2}
-  - {fileID: 11400000, guid: daec203b1f9a0094e834f2a52f2f6c65, type: 2}
-  - {fileID: 11400000, guid: 19999a75c746c6b4991358a968cef8de, type: 2}
   - {fileID: 11400000, guid: 105a6dff7c185e040be5518a518aa791, type: 2}
   - {fileID: 11400000, guid: d1b4f4a6f566ae246a224342bd3c9b52, type: 2}
-  - {fileID: 11400000, guid: 5ddf101ba5e5253419ba0b2bf46d55ff, type: 2}
-  - {fileID: 11400000, guid: 7ba7330db4a68524ab9b3a465c4f2a16, type: 2}
+  - {fileID: 11400000, guid: 64ba863246e54c0428233d5636af6aab, type: 2}
+  - {fileID: 11400000, guid: a76b64dee742fbb48b9ca3e8520c14b0, type: 2}
+  - {fileID: 11400000, guid: e34bcdea81e52f44597002e3ac2002ac, type: 2}
+  - {fileID: 11400000, guid: c84778370a94a5542b38c9118dbf51a5, type: 2}
   targetInteractable: {fileID: 0}
   interest:
     interestType: 0
@@ -1169,6 +1169,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1142613092930589095
 MonoBehaviour:
   m_ObjectHideFlags: 0

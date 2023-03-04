@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dab2f38ec259994abd887792cb2409c, type: 3}
+  m_Name: SetInterest_Sleep
+  m_EditorClassIdentifier: 
+  name: 
+  considerations:
+  - {fileID: 11400000, guid: 121f9399357e6214aa7d3739cad118b6, type: 2}
+  - {fileID: 11400000, guid: 522632970798cfc4dac074f885e63a19, type: 2}
+  - {fileID: 11400000, guid: 13d1426417c34bb46a5695d3933df801, type: 2}
+  interestType: 3
