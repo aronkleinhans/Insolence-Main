@@ -7,6 +7,7 @@ namespace Insolence.AIBrain
 {
     public class NPCPointOfInterest : MonoBehaviour
     {
+        public GameObject owner;
         public List<Interest> interests = new List<Interest>();
 
         private void Start()

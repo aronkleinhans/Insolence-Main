@@ -369,9 +369,13 @@ namespace Insolence.AIBrain
 
             List<NPCPointOfInterest> poiList = new List<NPCPointOfInterest>();
 
+            if (home != null && home.HasNeededInterest(interest))
+            {
+                poiList.Add(home);
+            }
 
             var pois = from poi in FindObjectsOfType<NPCPointOfInterest>()
-                       where poi != null && poi.GetComponent<NPCPointOfInterest>().HasNeededInterest(interest)
+                       where poi != null && poi.GetComponent<NPCPointOfInterest>().HasNeededInterest(interest) && poi.GetComponent<NPCPointOfInterest>().owner == null
                        select poi;
 
             if (interest.interestType == InterestType.Work)
