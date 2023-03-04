@@ -51,20 +51,24 @@ namespace Insolence.Core
             {
                 foreach (GameObject target in npcVision.visibleTargets)
                 {
-                    if (target.GetComponent<Interactable>() != null)
+                    if (target != null)
                     {
-                        if (!interactablesInRange.Contains(target.GetComponent<Interactable>()) && Vector3.Distance(transform.position, target.transform.position) <= interactRange)
-                        {
-                            interactablesInRange.Add(target.GetComponent<Interactable>());
-                        }
-                        if (target.GetComponent<InteractBackstab>() != null && GetComponent<KineCharacterController>().isCrouching)
+                        if (target.GetComponent<Interactable>() != null)
                         {
                             if (!interactablesInRange.Contains(target.GetComponent<Interactable>()) && Vector3.Distance(transform.position, target.transform.position) <= interactRange)
                             {
                                 interactablesInRange.Add(target.GetComponent<Interactable>());
                             }
+                            if (target.GetComponent<InteractBackstab>() != null && GetComponent<KineCharacterController>().isCrouching)
+                            {
+                                if (!interactablesInRange.Contains(target.GetComponent<Interactable>()) && Vector3.Distance(transform.position, target.transform.position) <= interactRange)
+                                {
+                                    interactablesInRange.Add(target.GetComponent<Interactable>());
+                                }
+                            }
                         }
                     }
+
                 }
                 //remove interactables that are no longer in range
                 for (int i = 0; i < interactablesInRange.Count; i++)
