@@ -70082,17 +70082,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00de28b71767b5e41bec4756b5ab02e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heightOffset: 0.3
+  heightOffset: 0.06
   fovAngle: 90
   sightDistance: 10
   hearingRadius: 5
+  drawGizmos: 0
   headTracking: {fileID: 0}
   targetMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 73
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 73
+    m_Bits: 1
   visibleTargets: []
   audibleTargets: []
 --- !u!1 &6704288842790814509

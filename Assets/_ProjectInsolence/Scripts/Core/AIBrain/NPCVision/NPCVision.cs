@@ -7,6 +7,7 @@ namespace Insolence.Core
     using UnityEngine;
     using System.Collections;
     using System.Collections.Generic;
+    using UnityEditor;
 
     public class NPCVision : MonoBehaviour
     {
@@ -14,6 +15,7 @@ namespace Insolence.Core
         public float fovAngle = 90f;
         public float sightDistance = 10f;
         public float hearingRadius = 5f;
+        public bool drawGizmos = true;
         [SerializeField] HeadTracking headTracking;
         [SerializeField] LayerMask targetMask;
         [SerializeField] LayerMask obstructionMask;
@@ -59,7 +61,7 @@ namespace Insolence.Core
                 if (angle < fovAngle * 0.5f)
                 {
                     RaycastHit hit;
-                    if (Physics.Raycast(transform.position + Vector3.up * heightOffset, direction.normalized, out hit, sightDistance, obstructionMask))
+                    if (Physics.Raycast(transform.position + Vector3.up * heightOffset, direction.normalized, out hit, sightDistance, targetMask))
                     {
                         if (hit.collider.gameObject == collider.gameObject && collider.gameObject != gameObject && collider.gameObject.tag == "Interactable")
                         {
@@ -85,43 +87,47 @@ namespace Insolence.Core
         }
 
 #if UNITY_EDITOR
+        
         void OnDrawGizmosSelected()
         {
-            // Draw the field of view cone
-            Gizmos.color = Color.yellow;
-            Vector3 fovLine1 = Quaternion.AngleAxis(fovAngle * 0.5f, transform.up) * transform.forward * sightDistance;
-            Vector3 fovLine2 = Quaternion.AngleAxis(-fovAngle * 0.5f, transform.up) * transform.forward * sightDistance;
-            Gizmos.DrawLine(transform.position + Vector3.up * heightOffset, transform.position + fovLine1);
-            Gizmos.DrawLine(transform.position + Vector3.up * heightOffset, transform.position + fovLine2);
-            DrawWireCircle(transform.position + Vector3.up * heightOffset, sightDistance, 16);
-
-            // Draw the hearing radius
-            Gizmos.color = Color.red;
-            DrawWireCircle(transform.position + Vector3.up * heightOffset, hearingRadius, 16);
-
-            // Draw the raycast direction
-            Gizmos.color = Color.green;
-            if (visibleTargets.Count > 0)
+            if (drawGizmos)
             {
-                //remove null items from list
-                visibleTargets.RemoveAll(item => item == null);
-                //draw line for each target
-                Vector3[] toTarget = new Vector3[visibleTargets.Count];
-                int i = 0;
-                foreach (GameObject target in visibleTargets)
-                {
-                    if (target != null)
-                    {
-                        toTarget[i] = target.transform.position - transform.position;
-                        Gizmos.DrawRay(transform.position, toTarget[i]);
-                    }
-                    i++;
-                }
-            }
+                // Draw the field of view cone
+                Gizmos.color = Color.yellow;
+                Vector3 fovLine1 = Quaternion.AngleAxis(fovAngle * 0.5f, transform.up) * transform.forward * sightDistance;
+                Vector3 fovLine2 = Quaternion.AngleAxis(-fovAngle * 0.5f, transform.up) * transform.forward * sightDistance;
+                Gizmos.DrawLine(transform.position + Vector3.up * heightOffset, transform.position + fovLine1);
+                Gizmos.DrawLine(transform.position + Vector3.up * heightOffset, transform.position + fovLine2);
+                DrawWireCircle(transform.position + Vector3.up * heightOffset, sightDistance, 16);
 
-            // Draw the circle for detecting targets
-            Gizmos.color = new Color(1f, 0.5f, 0f, 0.3f);
-            DrawWireCircle(transform.position + Vector3.up * heightOffset, sightDistance * 0.8f, 16);
+                // Draw the hearing radius
+                Gizmos.color = Color.red;
+                DrawWireCircle(transform.position + Vector3.up * heightOffset, hearingRadius, 16);
+
+                // Draw the raycast direction
+                Gizmos.color = Color.green;
+                if (visibleTargets.Count > 0)
+                {
+                    //remove null items from list
+                    visibleTargets.RemoveAll(item => item == null);
+                    //draw line for each target
+                    Vector3[] toTarget = new Vector3[visibleTargets.Count];
+                    int i = 0;
+                    foreach (GameObject target in visibleTargets)
+                    {
+                        if (target != null)
+                        {
+                            toTarget[i] = target.transform.position - transform.position;
+                            Gizmos.DrawRay(transform.position, toTarget[i]);
+                        }
+                        i++;
+                    }
+                }
+
+                // Draw the circle for detecting targets
+                Gizmos.color = new Color(1f, 0.5f, 0f, 0.3f);
+                DrawWireCircle(transform.position + Vector3.up * heightOffset, sightDistance * 0.8f, 16);
+            }
         }
 
         void DrawWireCircle(Vector3 position, float radius, int segments)
@@ -138,7 +144,6 @@ namespace Insolence.Core
                 Gizmos.DrawLine(points[i], points[i + 1]);
             }
         }
-
 #endif
     }
 }
