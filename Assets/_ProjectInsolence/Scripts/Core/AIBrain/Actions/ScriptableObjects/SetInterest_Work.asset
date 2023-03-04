@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dab2f38ec259994abd887792cb2409c, type: 3}
+  m_Name: SetInterest_Work
+  m_EditorClassIdentifier: Insolence.Core:Insolence.AIBrain.Actions:SetWorkInterest
+  name: 
+  considerations:
+  - {fileID: 11400000, guid: bba2e1bfc762ce54993fcb256f5a368d, type: 2}
+  - {fileID: 11400000, guid: 32dd6e24f60ad0a479ab947f0edb23fa, type: 2}
+  - {fileID: 11400000, guid: ce82db01dee5bab4daf16793a40eab31, type: 2}
+  - {fileID: 11400000, guid: ef45e0a6dd5d31f44907508c0ef48bfa, type: 2}
+  - {fileID: 11400000, guid: 4b00556611828664797364f4b50da525, type: 2}
+  - {fileID: 11400000, guid: be371f2f215326e41bc4fbce00004641, type: 2}
+  interestType: 4

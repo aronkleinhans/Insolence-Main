@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03fc8faa9dbae3543b942f4ae1ad8fc3, type: 3}
-  m_Name: IsNightTime
+  m_Script: {fileID: 11500000, guid: 2dab2f38ec259994abd887792cb2409c, type: 3}
+  m_Name: SetInterest_Trade
   m_EditorClassIdentifier: 
   name: 
-  isNightTime: 1
-  from: 6
-  to: 18
+  considerations:
+  - {fileID: 11400000, guid: e4b6acfd5d7300e4d8ff157fe34b78f4, type: 2}
+  - {fileID: 11400000, guid: b29be02f72c465c49b52a380c54bce80, type: 2}
+  interestType: 8

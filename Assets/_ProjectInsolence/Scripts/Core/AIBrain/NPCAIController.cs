@@ -224,17 +224,9 @@ namespace Insolence.AIBrain
              StartCoroutine(DecideDestinationCoroutine());
         }
 
-        public void SetWorkInterest()
+        public void SetInterest(InterestType interestType)
         {
-            StartCoroutine(SetWorkInterestCoroutine());           
-        }
-        public void SetTradeInterest()
-        {
-            StartCoroutine(SetTradeInterestCoroutine());
-        }
-        public void SetSleepInterest()
-        {
-            StartCoroutine(SetSleepInterestCoroutine());
+            StartCoroutine(SetInterestCoroutine(interestType));
         }
         public void DoSellMisc()
         {
@@ -434,29 +426,9 @@ namespace Insolence.AIBrain
             OnFinishedAction();
         }
 
-        IEnumerator SetWorkInterestCoroutine()
+        IEnumerator SetInterestCoroutine(InterestType interestType)
         {
-            interest.interestType = InterestType.Work;
-            interest.UpdateWorkType(this);
-            ClearDestAndArrived();
-
-            yield return null;
-            OnFinishedAction();
-        }
-
-        IEnumerator SetTradeInterestCoroutine()
-        {
-            interest.interestType = InterestType.Trade;
-            interest.UpdateWorkType(this);
-            ClearDestAndArrived();
-            
-            yield return null;
-            OnFinishedAction();
-        }
-
-        IEnumerator SetSleepInterestCoroutine()
-        {
-            interest.interestType = InterestType.Sleep;
+            interest.interestType = interestType;
             interest.UpdateWorkType(this);
             ClearDestAndArrived();
 
