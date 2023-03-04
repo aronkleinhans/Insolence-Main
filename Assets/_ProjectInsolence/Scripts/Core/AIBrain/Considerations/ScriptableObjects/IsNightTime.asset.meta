@@ -1,12 +1,6 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/_ProjectInsolence/Scripts/Core/AIBrain/Considerations/ScriptableObjects/IsNightTime.asset.meta
 guid: 13d1426417c34bb46a5695d3933df801
 NativeFormatImporter:
-========
-guid: 7ba685edb1d6302468428a4f47a500d0
-folderAsset: yes
-DefaultImporter:
->>>>>>>> main:Assets/_ProjectInsolence/Scenes/Overworld.meta
   externalObjects: {}
   mainObjectFileID: 11400000
   userData: 
