@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 205885471770751477}
   - component: {fileID: 205885471770751478}
   - component: {fileID: 835218040}
+  - component: {fileID: 8437327884720635095}
   m_Layer: 0
   m_Name: Farmable_SM_Tree_Pine_01
   m_TagString: Resource
@@ -153,8 +154,17 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7524245537922885421}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
+  serializedVersion: 2
   m_Radius: 0.33469224
   m_Height: 3.907669
   m_Direction: 1
@@ -172,7 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceType: {fileID: 11400000, guid: c544737e55938764d9f9ce1de40e125e, type: 2}
-  amount: 0
+  _amount: 0
 --- !u!114 &205885471770751478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +220,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interestType: 4
   workType: 7
+--- !u!114 &8437327884720635095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7524245537922885421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 1
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &7524621122371247365
 GameObject:
   m_ObjectHideFlags: 0

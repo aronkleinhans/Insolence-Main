@@ -27,7 +27,11 @@ namespace Insolence.Core
 
         void Update()
         {
-            StartCoroutine(DetectCoroutine());
+            //call Detect once every 20 frames
+            if (Time.frameCount % 20 == 0)
+            {
+                Detect();
+            }
 
             // Set the target of the head tracking script to the first visible target if the list is not empty
             if (headTracking != null && visibleTargets.Count > 0)
@@ -38,14 +42,10 @@ namespace Insolence.Core
             // Use visibleTargets and audibleTargets in your utility AI to make decisions
         }
 
-        private IEnumerator DetectCoroutine()
+        private void Detect()
         {
-            while (true)
-            {
-                yield return new WaitForSeconds(0.2f);
-                DetectAudibleTargets();
-                DetectVisibleTargets();
-            }
+            DetectAudibleTargets();
+            DetectVisibleTargets();
         }
 
         void DetectVisibleTargets()
