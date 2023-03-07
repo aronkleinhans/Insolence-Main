@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dab2f38ec259994abd887792cb2409c, type: 3}
   m_Name: SetInterest_Trade-BuyFood
   m_EditorClassIdentifier: 
-  name: 
+  name: 'Set Interest: Buy Food'
   considerations:
   - {fileID: 11400000, guid: c7783c1bb716f42428af5a43455ef5b3, type: 2}
   - {fileID: 11400000, guid: b29be02f72c465c49b52a380c54bce80, type: 2}
+  - {fileID: 11400000, guid: 32dd6e24f60ad0a479ab947f0edb23fa, type: 2}
   interestType: 8

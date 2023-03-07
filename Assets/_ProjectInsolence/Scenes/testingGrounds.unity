@@ -3342,6 +3342,10 @@ PrefabInstance:
       value: SM_Prop_CampFire_01
       objectReference: {fileID: 0}
     - target: {fileID: 1558265980526532, guid: 1fbdd99ef1d1e2b4dac24a8d8ef04741, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1558265980526532, guid: 1fbdd99ef1d1e2b4dac24a8d8ef04741, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483639
       objectReference: {fileID: 0}
@@ -3392,6 +3396,10 @@ PrefabInstance:
     - target: {fileID: 4585559402303324, guid: 1fbdd99ef1d1e2b4dac24a8d8ef04741, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 135542769541568652, guid: 1fbdd99ef1d1e2b4dac24a8d8ef04741, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3445,8 +3453,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
-  isPublic: 0
-  interests: []
+  isPublic: 1
+  interests:
+  - {fileID: 74163287}
 --- !u!1 &358814524 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 495363459, guid: 1fbdd99ef1d1e2b4dac24a8d8ef04741, type: 3}

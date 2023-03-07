@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dab2f38ec259994abd887792cb2409c, type: 3}
   m_Name: SetInterest_Trade
   m_EditorClassIdentifier: 
-  name: 
+  name: 'Set Interest: Trade'
   considerations:
   - {fileID: 11400000, guid: e4b6acfd5d7300e4d8ff157fe34b78f4, type: 2}
   - {fileID: 11400000, guid: b29be02f72c465c49b52a380c54bce80, type: 2}

@@ -16,7 +16,7 @@ namespace Insolence.Core
         public float sightDistance = 10f;
         public float hearingRadius = 5f;
         public bool drawGizmos = true;
-        [SerializeField] HeadTracking headTracking;
+        [SerializeField] List<float> heightsToCheck = new List<float>() { -0.1f, 0.5f, 1.5f, 2.5f, 3.5f };
         [SerializeField] LayerMask targetMask;
         [SerializeField] LayerMask obstructionMask;
 
@@ -30,42 +30,38 @@ namespace Insolence.Core
             //call Detect once every 20 frames
             if (Time.frameCount % 20 == 0)
             {
-                Detect();
-            }
-
-            // Set the target of the head tracking script to the first visible target if the list is not empty
-            if (headTracking != null && visibleTargets.Count > 0)
-            {
-                headTracking.Target = visibleTargets[0].transform;
+                Detect(heightsToCheck);
             }
 
             // Use visibleTargets and audibleTargets in your utility AI to make decisions
         }
 
-        private void Detect()
+        private void Detect(List<float> heightsToCheck)
         {
             DetectAudibleTargets();
-            DetectVisibleTargets();
+            DetectVisibleTargets(heightsToCheck);
         }
 
-        void DetectVisibleTargets()
+        void DetectVisibleTargets(List<float> heights)
         {
             visibleTargets.Clear();
 
-            Collider[] colliders = Physics.OverlapSphere(transform.position + Vector3.up * heightOffset, sightDistance, targetMask);
-            foreach (Collider collider in colliders)
+            foreach (float height in heights)
             {
-                Vector3 direction = collider.transform.position - (transform.position + Vector3.up * heightOffset);
-                direction.y = 0f;
-                float angle = Vector3.Angle(direction, transform.forward);
-                if (angle < fovAngle * 0.5f)
+                Collider[] colliders = Physics.OverlapSphere(transform.position + Vector3.up * height, sightDistance, targetMask);
+                foreach (Collider collider in colliders)
                 {
-                    RaycastHit hit;
-                    if (Physics.Raycast(transform.position + Vector3.up * heightOffset, direction.normalized, out hit, sightDistance, targetMask))
+                    Vector3 direction = collider.transform.position - (transform.position + Vector3.up * height);
+                    float angle = Vector3.Angle(direction, transform.forward);
+                    if (angle < fovAngle * 0.5f)
                     {
-                        if (hit.collider.gameObject == collider.gameObject && collider.gameObject != gameObject && collider.gameObject.tag == "Interactable")
+                        RaycastHit hit;
+                        if (Physics.Raycast(transform.position + Vector3.up * height, direction.normalized, out hit, sightDistance, targetMask))
                         {
-                            visibleTargets.Add(collider.gameObject);
+                            if (hit.collider.gameObject == collider.gameObject && collider.gameObject != gameObject && !visibleTargets.Contains(collider.gameObject))
+                            {
+                                visibleTargets.Add(collider.gameObject);
+                            }
                         }
                     }
                 }

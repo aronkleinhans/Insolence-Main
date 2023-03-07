@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dab2f38ec259994abd887792cb2409c, type: 3}
   m_Name: SetInterest_Work
   m_EditorClassIdentifier: Insolence.Core:Insolence.AIBrain.Actions:SetWorkInterest
-  name: 
+  name: 'Set Interest: Work'
   considerations:
   - {fileID: 11400000, guid: bba2e1bfc762ce54993fcb256f5a368d, type: 2}
   - {fileID: 11400000, guid: 32dd6e24f60ad0a479ab947f0edb23fa, type: 2}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dab2f38ec259994abd887792cb2409c, type: 3}
   m_Name: SetInterest_Sleep
   m_EditorClassIdentifier: 
-  name: 
+  name: 'Set Interest: Sleep'
   considerations:
   - {fileID: 11400000, guid: 121f9399357e6214aa7d3739cad118b6, type: 2}
   - {fileID: 11400000, guid: 522632970798cfc4dac074f885e63a19, type: 2}
