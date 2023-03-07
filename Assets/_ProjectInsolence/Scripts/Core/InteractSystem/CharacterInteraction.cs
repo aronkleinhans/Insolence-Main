@@ -42,6 +42,8 @@ namespace Insolence.Core
         private void Update()
         {
             CollectInteractables();
+            //clean list of null items
+            interactablesInRange.RemoveAll(item => item == null);
             HandleInteraction();
         }
         private void CollectInteractables()
@@ -61,7 +63,11 @@ namespace Insolence.Core
                             }
                             if (target.GetComponent<InteractBackstab>() != null && GetComponent<KineCharacterController>().isCrouching)
                             {
-                                if (!interactablesInRange.Contains(target.GetComponent<Interactable>()) && Vector3.Distance(transform.position, target.transform.position) <= interactRange)
+                                //calculate dot product to see if the character is behind the target
+                                Vector3 targetDirection = target.transform.position - transform.position;
+                                float dotProduct = Vector3.Dot(targetDirection, transform.forward);
+
+                                if (dotProduct > 0 && !interactablesInRange.Contains(target.GetComponent<Interactable>()) && Vector3.Distance(transform.position, target.transform.position) <= interactRange)
                                 {
                                     interactablesInRange.Add(target.GetComponent<Interactable>());
                                 }
@@ -103,8 +109,7 @@ namespace Insolence.Core
                         }
                     }
                 }
-                //clean list of null items
-                interactablesInRange.RemoveAll(item => item == null);
+                
             }
         }
         private void HandleInteraction()

@@ -61,7 +61,7 @@ namespace Insolence.Core
             copyPR("Root");
 
             //add list of transforms to ragdoll's lists but copy  not just reference
-            RagdollInfo ragdollInfo = ragdoll.GetComponent<RagdollInfo>();
+            RagdollInfo ragdollInfo = ragdoll.GetComponentInChildren<RagdollInfo>();
             //ragdollInfo.positions = new List<Vector3>(positions);
             //ragdollInfo.rotations = new List<Quaternion>(rotations);
             ragdollInfo.modelName = new string(modelName);
@@ -79,7 +79,7 @@ namespace Insolence.Core
 
             List<string> ids = inv.CreateItemIDList();
 
-            Inventory rInv = ragdoll.GetComponent<Inventory>();
+            Inventory rInv = ragdoll.GetComponentInChildren<Inventory>();
             ragdollInfo.gold = status.gold;
 
             foreach (string id in ids)

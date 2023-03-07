@@ -27,15 +27,28 @@ namespace Insolence.Core
 
         void Update()
         {
+            //remove null or missing objects in both lists
+            visibleTargets.RemoveAll(item => item == null);
+            audibleTargets.RemoveAll(item => item == null);
+
             //call Detect once every 20 frames
             if (Time.frameCount % 20 == 0)
             {
+                //call detect
                 Detect(heightsToCheck);
+                //set layer to default on all gameobjects that dont have an interactable
+                foreach (GameObject target in visibleTargets)
+                {
+                    if (target.GetComponent<Interactable>() == null)
+                    {
+                        target.layer = 0;
+                    }
+                }
             }
-
-            // Use visibleTargets and audibleTargets in your utility AI to make decisions
         }
 
+
+        //detect visible and audible targets
         private void Detect(List<float> heightsToCheck)
         {
             DetectAudibleTargets();

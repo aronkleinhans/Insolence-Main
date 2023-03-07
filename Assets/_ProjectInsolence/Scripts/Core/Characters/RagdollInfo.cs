@@ -26,9 +26,9 @@ namespace Insolence.Core
 
         private void Start()
         {
-            inv = GetComponent<Inventory>();
+            inv = GetComponentInChildren<Inventory>();
             //add save and load
-            DynamicObject dynamicObject = gameObject.GetComponent<DynamicObject>();
+            DynamicObject dynamicObject = GetComponent<DynamicObject>();
             dynamicObject.prepareToSaveDelegates += PrepareToSaveObjectState;
             dynamicObject.loadObjectStateDelegates += LoadObjectState;
         }
