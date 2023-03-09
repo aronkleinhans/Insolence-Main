@@ -532,7 +532,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cbabeb9c755dbe4da59a2e39f5ecb89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home: {fileID: 0}
+  ownedPois:
+  - {fileID: 0}
   job: 13
   availableActions:
   - {fileID: 11400000, guid: eeed9b4e28297f74f932062a2b1203b2, type: 2}

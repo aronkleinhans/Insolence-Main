@@ -48,70 +48,30 @@ namespace Insolence.Core
         }
         private void CollectInteractables()
         {
-            //use npcvision to get interactables in range (handle like ontriggerstay) (use add)
-            if (npcVision != null)
+            HashSet<Interactable> interactablesInRange = new HashSet<Interactable>();
+
+            foreach (GameObject target in npcVision.visibleTargets)
             {
-                foreach (GameObject target in npcVision.visibleTargets)
+                if (target != null && target.GetComponent<Interactable>() != null)
                 {
-                    if (target != null)
+                    if (Vector3.Distance(transform.position, target.transform.position) <= interactRange &&
+                        (npcVision.visibleTargets.Contains(target.gameObject) ||
+                        (target.GetComponent<InteractBackstab>() != null && GetComponent<KineCharacterController>().isCrouching)))
                     {
-                        if (target.GetComponent<Interactable>() != null)
-                        {
-                            if (!interactablesInRange.Contains(target.GetComponent<Interactable>()) && Vector3.Distance(transform.position, target.transform.position) <= interactRange)
-                            {
-                                interactablesInRange.Add(target.GetComponent<Interactable>());
-                            }
-                            if (target.GetComponent<InteractBackstab>() != null && GetComponent<KineCharacterController>().isCrouching)
-                            {
-                                //calculate dot product to see if the character is behind the target
-                                Vector3 targetDirection = target.transform.position - transform.position;
-                                float dotProduct = Vector3.Dot(targetDirection, transform.forward);
-
-                                if (dotProduct > 0 && !interactablesInRange.Contains(target.GetComponent<Interactable>()) && Vector3.Distance(transform.position, target.transform.position) <= interactRange)
-                                {
-                                    interactablesInRange.Add(target.GetComponent<Interactable>());
-                                }
-                            }
-                        }
-                    }
-
-                }
-                //remove interactables that are no longer in range
-                for (int i = 0; i < interactablesInRange.Count; i++)
-                {
-                    if (interactablesInRange[i] != null)
-                    {
-                        if (Vector3.Distance(transform.position, interactablesInRange[i].transform.position) > interactRange)
-                        {
-                            interactablesInRange.Remove(interactablesInRange[i]);
-                        }
+                        interactablesInRange.Add(target.GetComponent<Interactable>());
                     }
                 }
-                //remove interactables no longer in sight
-                for (int i = 0; i < interactablesInRange.Count; i++)
-                {
-                    if (interactablesInRange[i] != null)
-                    {
-                        if (!npcVision.visibleTargets.Contains(interactablesInRange[i].gameObject))
-                        {
-                            interactablesInRange.Remove(interactablesInRange[i]);
-                        }
-                    }
-                }
-                //remove backstab interactables if not crouching
-                for (int i = 0; i < interactablesInRange.Count; i++)
-                {
-                    if (interactablesInRange[i] != null)
-                    {
-                        if (interactablesInRange[i].GetComponent<InteractBackstab>() != null && !GetComponent<KineCharacterController>().isCrouching)
-                        {
-                            interactablesInRange.Remove(interactablesInRange[i]);
-                        }
-                    }
-                }
-                
             }
+
+            interactablesInRange.RemoveWhere(interactable =>
+                interactable == null ||
+                Vector3.Distance(transform.position, interactable.transform.position) > interactRange ||
+                !npcVision.visibleTargets.Contains(interactable.gameObject) ||
+                (interactable.GetComponent<InteractBackstab>() != null && !GetComponent<KineCharacterController>().isCrouching));
+
+            this.interactablesInRange = new List<Interactable>(interactablesInRange);
         }
+
         private void HandleInteraction()
         {
             if (interactablesInRange.Count == 0)

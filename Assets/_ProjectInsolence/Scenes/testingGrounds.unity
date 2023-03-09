@@ -4885,6 +4885,10 @@ PrefabInstance:
       propertyPath: hungerRate
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 4506185157182159678, guid: 2f85b507167e2a64db86f92eb4d9b016, type: 3}
+      propertyPath: ownedPois.Array.data[0]
+      value: 
+      objectReference: {fileID: 470110567}
     - target: {fileID: 5646243365772127012, guid: 2f85b507167e2a64db86f92eb4d9b016, type: 3}
       propertyPath: m_Layer
       value: 6

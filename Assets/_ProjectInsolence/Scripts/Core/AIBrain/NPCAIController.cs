@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 using UnityEngine.UIElements;
+using System;
 
 namespace Insolence.AIBrain
 {
@@ -16,7 +17,9 @@ namespace Insolence.AIBrain
         public ShopInventory shopInventory { get; set; }
 
 
-        [SerializeField] NPCPointOfInterest home;
+        [SerializeField] List<NPCPointOfInterest> ownedPois = new List<NPCPointOfInterest>();
+
+        [SerializeField] private static List<NPCPointOfInterest> _allPois = new List<NPCPointOfInterest>();
         public AIBrain brain { get; set; }
         public JobType job;
         public Action[] availableActions;
@@ -59,6 +62,7 @@ namespace Insolence.AIBrain
             Merchant
         }
 
+        
         public void Start()
         {
             mover = GetComponent<NpcKinematicController>();
@@ -76,6 +80,21 @@ namespace Insolence.AIBrain
 
         public void Update()
         {
+            //get all pois if scene is ready
+            if (sceneIsReady() && _allPois.Count == 0)
+            {
+                //add all pois to list
+                NPCPointOfInterest[] pois = FindObjectsOfType<NPCPointOfInterest>();
+
+                foreach (NPCPointOfInterest poi in pois)
+                {
+                    _allPois.Add(poi);
+                }
+            }
+            //clear allpois of missing/null items
+            _allPois.RemoveAll(poi => poi == null);
+            
+            
             if (brain.finishedDeciding)
             {
                 if (brain.bestAction != null)
@@ -170,7 +189,7 @@ namespace Insolence.AIBrain
         public void OnFinishedAction()
         {
             StopAllCoroutines();
-            brain.ChooseBestAction(availableActions);
+            brain.bestAction = null;
         }
 
         public GameObject GetInteractable()
@@ -216,7 +235,7 @@ namespace Insolence.AIBrain
 
         public void MoveToDestination()
         {
-                StartCoroutine(MoveToDestinationCoroutine());
+             StartCoroutine(MoveToDestinationCoroutine());
         }
 
         public void DecideDestination()
@@ -363,57 +382,68 @@ namespace Insolence.AIBrain
         {
             return GameObject.Find("GameManager").GetComponent<GameManager>().sceneReady;
         }
+        
+        
         IEnumerator DecideDestinationCoroutine()
         {
-            yield return new WaitUntil(sceneIsReady);
-
             List<NPCPointOfInterest> poiList = new List<NPCPointOfInterest>();
 
-
-
-            var pois = from poi in FindObjectsOfType<NPCPointOfInterest>()
-                       where poi != null && poi.GetComponent<NPCPointOfInterest>().HasNeededInterest(interest) && (poi.GetComponent<NPCPointOfInterest>().owner == null || poi.GetComponent<NPCPointOfInterest>().isPublic)
-                       select poi;
-
-            if (interest.interestType == InterestType.Work)
+            poiList.Clear();
+            //do the same as the above linq query but use the static allPois list instead(filter with where)
+            foreach (NPCPointOfInterest poi in _allPois)
             {
-                pois = from poi in pois
-                       where poi != null && poi.GetComponent<NPCPointOfInterest>().HasNeededWorkType(interest)
-                       select poi;
+                if (poi != null && poi.HasNeededInterest(interest) && (poi.owner == null || poi.isPublic))
+                {
+                    if (interest.interestType == InterestType.Work)
+                    {
+                        if (poi.HasNeededWorkType(interest))
+                        {
+                            poiList.Add(poi);
+                        }
+                    }
+                    else
+                    {
+                        poiList.Add(poi);
+                    }
+                }
             }
 
-            poiList.Clear();
-            poiList = pois.ToList();
-            
             Interest closestPOI = null;
             float closestDistance = Mathf.Infinity;
 
-            //first check if NPC has a home and if it has the required interest
-            if (home != null && home.HasNeededInterest(interest))
+            //first check if NPC has any ownedpois and if they have the required interest
+
+            if (ownedPois.Count > 0)
             {
-                foreach (Interest i in home.GetComponent<NPCPointOfInterest>().interests)
+                foreach (var poi in ownedPois)
                 {
-                    if (i != null)
+                    if (poi != null)
                     {
-                        float dist = Vector3.Distance(transform.position, i.transform.position);
-                        if (dist < closestDistance)
+                        foreach (Interest i in poi.interests)
                         {
-                            closestDistance = dist;
-                            closestPOI = i;
+                            if (i != null && i.interestType == interest.interestType)
+                            {
+                                float dist = Vector3.Distance(transform.position, i.transform.position);
+                                if (dist < closestDistance)
+                                {
+                                    closestDistance = dist;
+                                    closestPOI = i;
+                                }
+                            }
                         }
                     }
                 }
             }
             //else look for closest other interest
-            else
+            if (closestPOI == null && poiList.Count > 0)
             {
                 foreach (var poi in poiList)
                 {
                     if (poi != null)
                     {
-                        foreach (Interest i in poi.GetComponent<NPCPointOfInterest>().interests)
+                        foreach (Interest i in poi.interests)
                         {
-                            if (i != null)
+                            if (i != null && i.interestType == interest.interestType)
                             {
                                 float distance = Vector3.Distance(transform.position, i.transform.position);
                                 if (distance < closestDistance)
@@ -426,6 +456,12 @@ namespace Insolence.AIBrain
                         }
                     }
                 }
+            }
+            else
+            {
+                //if no poi is found, set interest to wander
+                Debug.Log("No poi found");
+                StartCoroutine(SetInterestCoroutine(InterestType.Wander));
             }
             if (closestPOI == null)
             {
@@ -446,7 +482,7 @@ namespace Insolence.AIBrain
                 travelDistance = Vector3.Distance(transform.position, destination.transform.position);
             }
             yield return null;
-                OnFinishedAction();
+            OnFinishedAction();
             }
 
         IEnumerator SetInterestCoroutine(InterestType interestType)
