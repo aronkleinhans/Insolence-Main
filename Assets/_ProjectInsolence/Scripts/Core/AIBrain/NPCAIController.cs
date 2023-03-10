@@ -4,10 +4,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
-using Unity.Jobs;
+using UnityEngine.UIElements;
 using System;
-using System.Reflection;
-using Newtonsoft.Json.Converters;
 
 namespace Insolence.AIBrain
 {
@@ -18,15 +16,10 @@ namespace Insolence.AIBrain
         public Inventory inventory { get; set; }
         public ShopInventory shopInventory { get; set; }
 
-        public Vector3 position;
 
-        [SerializeField] public List<NPCPointOfInterest> ownedPois = new List<NPCPointOfInterest>();
+        [SerializeField] List<NPCPointOfInterest> ownedPois = new List<NPCPointOfInterest>();
 
-        [SerializeField] public static List<NPCPointOfInterest> _allPois = new List<NPCPointOfInterest>();
-
-        private static int nextIndex = 0;
-        private int index;
-        
+        [SerializeField] private static List<NPCPointOfInterest> _allPois = new List<NPCPointOfInterest>();
         public AIBrain brain { get; set; }
         public JobType job;
         public Action[] availableActions;
@@ -35,8 +28,6 @@ namespace Insolence.AIBrain
         
         public Interest.InterestStruct interest = new Interest.InterestStruct();
         public GameObject destination;
-        public Interest jDestination;
-
 
         [Header("Public Flags")]
         public bool enRoute = false;
@@ -71,17 +62,6 @@ namespace Insolence.AIBrain
             Merchant
         }
 
-        private void Awake()
-        {
-            index = nextIndex++;
-            NPCAIManager.Instance.AddNPC(index, this);
-            position = transform.position;
-        }
-
-        private void OnDestroy()
-        {
-            NPCAIManager.Instance.RemoveNPC(index);
-        }
         
         public void Start()
         {
@@ -100,11 +80,6 @@ namespace Insolence.AIBrain
 
         public void Update()
         {
-            if(jDestination != null)
-            {
-                destination = jDestination.gameObject;
-            }
-
             //get all pois if scene is ready
             if (sceneIsReady() && _allPois.Count == 0)
             {
@@ -124,19 +99,9 @@ namespace Insolence.AIBrain
             {
                 if (brain.bestAction != null)
                 {
-                    if(brain.bestAction.name == "Deciding Destination")
-                    {
-                        brain.bestAction.ScheduleJob(this);
-                        brain.finishedDeciding = false;
-                    }
-                    else
-                    {
-                        brain.bestAction.Execute(this);
-                        brain.finishedDeciding = false;
-                    }
-
+                    brain.bestAction.Execute(this);
+                    brain.finishedDeciding = false;
                 }
-
             }
             //check inventory for food items every 10 frames
             if (Time.frameCount % 10 == 0)
@@ -223,17 +188,10 @@ namespace Insolence.AIBrain
         }
         public void OnFinishedAction()
         {
+            StopAllCoroutines();
             brain.bestAction = null;
         }
 
-        public static float GetDistance(NPCAIController npc, Interest interest)
-        {
-            Vector3 npcPosition = npc.position;
-            Vector3 interestPosition = interest.position;
-            return Vector3.Distance(npcPosition, interestPosition);
-        }
-
-        
         public GameObject GetInteractable()
         {
             if (targetInteractable != null)
@@ -280,10 +238,10 @@ namespace Insolence.AIBrain
              StartCoroutine(MoveToDestinationCoroutine());
         }
 
-        //public void DecideDestination()
-        //{
-        //     StartCoroutine(DecideDestinationCoroutine());
-        //}
+        public void DecideDestination()
+        {
+             StartCoroutine(DecideDestinationCoroutine());
+        }
 
         public void SetInterest(InterestType interestType)
         {
@@ -416,8 +374,6 @@ namespace Insolence.AIBrain
             enRoute = false;
             status.hunger += (int)hungerGainOnArrival;
             neededFood -= (int)hungerGainOnArrival;
-            jDestination = null;
-            destination = null;
             OnFinishedAction();
             
         }
@@ -428,106 +384,106 @@ namespace Insolence.AIBrain
         }
         
         
-        //IEnumerator DecideDestinationCoroutine()
-        //{
-        //    List<NPCPointOfInterest> poiList = new List<NPCPointOfInterest>();
+        IEnumerator DecideDestinationCoroutine()
+        {
+            List<NPCPointOfInterest> poiList = new List<NPCPointOfInterest>();
 
-        //    poiList.Clear();
-        //    //do the same as the above linq query but use the static allPois list instead(filter with where)
-        //    foreach (NPCPointOfInterest poi in _allPois)
-        //    {
-        //        if (poi != null && poi.HasNeededInterest(interest) && (poi.owner == null || poi.isPublic))
-        //        {
-        //            if (interest.interestType == InterestType.Work)
-        //            {
-        //                if (poi.HasNeededWorkType(interest))
-        //                {
-        //                    poiList.Add(poi);
-        //                }
-        //            }
-        //            else
-        //            {
-        //                poiList.Add(poi);
-        //            }
-        //        }
-        //    }
+            poiList.Clear();
+            //do the same as the above linq query but use the static allPois list instead(filter with where)
+            foreach (NPCPointOfInterest poi in _allPois)
+            {
+                if (poi != null && poi.HasNeededInterest(interest) && (poi.owner == null || poi.isPublic))
+                {
+                    if (interest.interestType == InterestType.Work)
+                    {
+                        if (poi.HasNeededWorkType(interest))
+                        {
+                            poiList.Add(poi);
+                        }
+                    }
+                    else
+                    {
+                        poiList.Add(poi);
+                    }
+                }
+            }
 
-        //    Interest closestPOI = null;
-        //    float closestDistance = Mathf.Infinity;
+            Interest closestPOI = null;
+            float closestDistance = Mathf.Infinity;
 
-        //    //first check if NPC has any ownedpois and if they have the required interest
+            //first check if NPC has any ownedpois and if they have the required interest
 
-        //    if (ownedPois.Count > 0)
-        //    {
-        //        foreach (var poi in ownedPois)
-        //        {
-        //            if (poi != null)
-        //            {
-        //                foreach (Interest i in poi.interests)
-        //                {
-        //                    if (i != null && i.interestType == interest.interestType)
-        //                    {
-        //                        float dist = Vector3.Distance(transform.position, i.transform.position);
-        //                        if (dist < closestDistance)
-        //                        {
-        //                            closestDistance = dist;
-        //                            closestPOI = i;
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-        //    //else look for closest other interest
-        //    if (closestPOI == null && poiList.Count > 0)
-        //    {
-        //        foreach (var poi in poiList)
-        //        {
-        //            if (poi != null)
-        //            {
-        //                foreach (Interest i in poi.interests)
-        //                {
-        //                    if (i != null && i.interestType == interest.interestType)
-        //                    {
-        //                        float distance = Vector3.Distance(transform.position, i.transform.position);
-        //                        if (distance < closestDistance)
-        //                        {
-        //                            closestDistance = distance;
-        //                            closestPOI = i;
-        //                        }
+            if (ownedPois.Count > 0)
+            {
+                foreach (var poi in ownedPois)
+                {
+                    if (poi != null)
+                    {
+                        foreach (Interest i in poi.interests)
+                        {
+                            if (i != null && i.interestType == interest.interestType)
+                            {
+                                float dist = Vector3.Distance(transform.position, i.transform.position);
+                                if (dist < closestDistance)
+                                {
+                                    closestDistance = dist;
+                                    closestPOI = i;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            //else look for closest other interest
+            if (closestPOI == null && poiList.Count > 0)
+            {
+                foreach (var poi in poiList)
+                {
+                    if (poi != null)
+                    {
+                        foreach (Interest i in poi.interests)
+                        {
+                            if (i != null && i.interestType == interest.interestType)
+                            {
+                                float distance = Vector3.Distance(transform.position, i.transform.position);
+                                if (distance < closestDistance)
+                                {
+                                    closestDistance = distance;
+                                    closestPOI = i;
+                                }
 
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        //if no poi is found, set interest to wander
-        //        Debug.Log("No poi found");
-        //        StartCoroutine(SetInterestCoroutine(InterestType.Wander));
-        //    }
-        //    if (closestPOI == null)
-        //    {
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                //if no poi is found, set interest to wander
+                Debug.Log("No poi found");
+                StartCoroutine(SetInterestCoroutine(InterestType.Wander));
+            }
+            if (closestPOI == null)
+            {
 
-        //    }
-        //    else
-        //    {
-        //        if (neededFood == 0)
-        //        {
-        //            neededFood = closestDistance * hungerRate * 2;
-        //        }
-        //        else if (neededFood < hungerGainOnArrival)
-        //        {
-        //            neededFood = hungerGainOnArrival;
-        //        }
-        //        destination = closestPOI.gameObject;
-        //        hasArrived = false;
-        //        travelDistance = Vector3.Distance(transform.position, destination.transform.position);
-        //    }
-        //    yield return null;
-        //    OnFinishedAction();
-        //    }
+            }
+            else
+            {
+                if (neededFood == 0)
+                {
+                    neededFood = closestDistance * hungerRate * 2;
+                }
+                else if (neededFood < hungerGainOnArrival)
+                {
+                    neededFood = hungerGainOnArrival;
+                }
+                destination = closestPOI.gameObject;
+                hasArrived = false;
+                travelDistance = Vector3.Distance(transform.position, destination.transform.position);
+            }
+            yield return null;
+            OnFinishedAction();
+            }
 
         IEnumerator SetInterestCoroutine(InterestType interestType)
         {
