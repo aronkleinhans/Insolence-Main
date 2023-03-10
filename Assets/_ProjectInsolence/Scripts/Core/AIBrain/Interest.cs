@@ -42,6 +42,15 @@ namespace Insolence.AIBrain
     {
         public InterestType interestType;
         public WorkType workType;
+        public Vector3 position;
+
+        private void Update()
+        {
+            if(position != transform.position)
+            {
+                position = transform.position;
+            }
+        }
         [System.Serializable]
         public struct InterestStruct
         {
