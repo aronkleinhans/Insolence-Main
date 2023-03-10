@@ -23,5 +23,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_ProjectInsolence/Scenes/zzzLoadScreen.unity
     guid: e749e5c1157e6124380d79b304fc393d
+  - enabled: 1
+    path: Assets/_ProjectInsolence/Scenes/Overworld.unity
+    guid: 1aa724b43215aa540a0732ff973a0066
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 668aeb37c9eaa834cbedb31f6501ad1b, type: 2}

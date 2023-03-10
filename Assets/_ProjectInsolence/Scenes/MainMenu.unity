@@ -104,7 +104,7 @@ NavMeshSettings:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_BuildSettings:
-    serializedVersion: 2
+    serializedVersion: 3
     agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 2
@@ -117,7 +117,7 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualTileSize: 0
     tileSize: 256
-    accuratePlacement: 0
+    buildHeightMesh: 0
     maxJobWorkers: 0
     preserveTilesOutsideBounds: 0
     debug:
@@ -128,11 +128,16 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 282992633, guid: fff86ae1674a7b54ebbb5f3138f3a722, type: 3}
       propertyPath: timeOfDay
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1094068368, guid: fff86ae1674a7b54ebbb5f3138f3a722, type: 3}
+      propertyPath: newGameLevel
+      value: Overworld
       objectReference: {fileID: 0}
     - target: {fileID: 4538057696000277041, guid: fff86ae1674a7b54ebbb5f3138f3a722, type: 3}
       propertyPath: m_RootOrder
@@ -367,6 +372,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fff86ae1674a7b54ebbb5f3138f3a722, type: 3}
 --- !u!1 &1466428885
 GameObject:
