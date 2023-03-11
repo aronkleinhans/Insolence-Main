@@ -133,7 +133,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282992633, guid: fff86ae1674a7b54ebbb5f3138f3a722, type: 3}
       propertyPath: timeOfDay
-      value: 5
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 282992633, guid: fff86ae1674a7b54ebbb5f3138f3a722, type: 3}
+      propertyPath: timeScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1094068368, guid: fff86ae1674a7b54ebbb5f3138f3a722, type: 3}
       propertyPath: newGameLevel

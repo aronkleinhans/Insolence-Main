@@ -51,7 +51,7 @@ MonoBehaviour:
   multipleScatteringAmpGain: 0.13
   multipleScatteringDensityGain: 0.024
   multipleScatteringOctaves: 2
-  cloudiness: 0.56
+  cloudiness: 0.55
   distantCoverageDepth: 20
   distantCoverageAmount: 0.627
   heightDensityInfluence: 1
